@@ -1,9 +1,35 @@
 #include <iostream>
 #include <cstring>
 #include <limits>
+#include <fstream>
+#define MAX 100
 
 class Local{
-//Local vai aqui
+private:
+    char endereco[300];
+    double coordenadaX;
+    double coordenadaY;
+public:
+
+    Local(){
+        strcpy(endereco, "");
+        coordenadaX=0.0;
+        coordenadaY=0.0;
+    }
+
+    Local(const char* endereco, double coordenadaX, double coordenadaY){
+        setEndereco(endereco);
+        setCoordenadaX(coordenadaX);
+        setCoordenadaY(coordenadaY);
+    }
+
+    void setEndereco (const char* endereco){ strcpy(this->endereco, endereco); }
+    void setCoordenadaX (double coordenadaX){ this->coordenadaX=coordenadaX; }
+    void setCoordenadaY (double coordenadaY){ this->coordenadaY=coordenadaY; }
+
+    const char* getEndereco(){ return endereco; }
+    double getCoordenadaX(){ return coordenadaX; }
+    double getCoordenadaY(){ return coordenadaY; }
 };
 
 class Veiculo{
