@@ -77,7 +77,16 @@ public:
         cin.ignore();
 
         locais[id-1]=Local(tempEndereco, tempCoordenadaX, tempCoordenadaY);
-        cout<<"Local atualizado com sucesso!";
+        cout<<"Local atualizado com sucesso!"<<endl;
+    }
+    void listaLocais(){
+        for (int i=0; i<totalLocais; i++){
+            cout<<"["<<i+1<<"]"
+            <<" | Endereco: "<<locais[i].getEndereco()
+            <<" | Coordenada X: "<<locais[i].getCoordenadaX()
+            <<" | Coordenada Y: "<<locais[i].getCoordenadaY()
+            <<endl;
+        }
     }
 };
 
