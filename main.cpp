@@ -62,7 +62,7 @@ public:
         double tempCoordenadaY;
         int id;
 
-        cout<<"Digite o ID do local a ser atualizado:\n";
+        cout<<"Digite o [ID] do local a ser atualizado:\n";
         listaLocais();
         cout<<"ID: ";
         cin>>id;
@@ -77,6 +77,7 @@ public:
         cin.ignore();
 
         locais[id-1]=Local(tempEndereco, tempCoordenadaX, tempCoordenadaY);
+
         cout<<"Local atualizado com sucesso!"<<endl;
     }
     void listaLocais(){
@@ -87,6 +88,22 @@ public:
             <<" | Coordenada Y: "<<locais[i].getCoordenadaY()
             <<endl;
         }
+    }
+    void removerLocal(){
+        int id;
+
+        cout<<"Digite o [ID] do local a ser excluido:\n";
+        listaLocais();
+        cout<<"ID: ";
+        cin>>id;
+        cin.ignore();
+
+        for (int i=id-1; i<totalLocais-1; i++){
+            locais[i]=locais[i+1];
+        }
+        totalLocais--;
+
+        cout<<"Local removido com sucesso!"<<endl;
     }
 };
 
