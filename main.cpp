@@ -108,7 +108,36 @@ public:
 };
 
 class Veiculo{
-//Veículo vai aqui
+private:
+    char marca[100];
+    char modelo[100];
+    char placa[8];
+    bool disponivel;
+public:
+
+    Veiculo(){
+        strcpy(marca, "");
+        strcpy(modelo, "");
+        strcpy(placa, "");
+        disponivel=true;
+    }
+
+    Veiculo(const char* marca, const char* modelo, const char* placa, bool disponivel){
+        setMarca(marca);
+        setModelo(modelo);
+        setPlaca(placa);
+        setDisponivel(disponivel);
+    }
+
+    void setMarca (const char* marca){ strcpy(this->marca, marca); }
+    void setModelo (const char* modelo){ strcpy(this->modelo, modelo); }
+    void setPlaca (const char* placa){ strcpy(this->placa, placa); }
+    void setDisponivel (bool disponivel){ this->disponivel=disponivel; }
+
+    const char* getMarca(){ return marca; }
+    const char* getModelo(){ return modelo; }
+    const char* getPlaca(){ return placa; }
+    bool getDisponivel(){ return disponivel; }
 };
 
 class Pedido{
