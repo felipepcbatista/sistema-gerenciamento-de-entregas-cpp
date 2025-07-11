@@ -32,6 +32,32 @@ public:
     double getCoordenadaY(){ return coordenadaY; }
 };
 
+class ManagerLocais{
+private:
+    Local locais[MAX];
+    int totalLocais=0;
+public:
+    void cadastrarLocal(){
+        char endereco[300];
+        double coordenadaX;
+        double coordenadaY;
+
+        cout<<"Endereco do local: ";
+        cin.getline(endereco, 300);
+        cout<<"Coordenadas:\n";
+        cout<<"X: ";
+        cin>>coordenadaX;
+        cout<<"Y: ";
+        cin>>coordenadaY;
+        cin.ignore();
+
+        locais[totalLocais]=Local(endereco, coordenadaX, coordenadaY);
+        totalLocais++;
+
+        cout<<"Local cadastrado com sucesso!"<<endl;
+    }
+};
+
 class Veiculo{
 //Veículo vai aqui
 };
