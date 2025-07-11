@@ -112,6 +112,7 @@ private:
     char marca[100];
     char modelo[100];
     char placa[8];
+    int id_localAtual;
     bool disponivel;
 public:
 
@@ -119,25 +120,56 @@ public:
         strcpy(marca, "");
         strcpy(modelo, "");
         strcpy(placa, "");
+        id_localAtual=-1;
         disponivel=true;
     }
 
-    Veiculo(const char* marca, const char* modelo, const char* placa, bool disponivel){
+    Veiculo(const char* marca, const char* modelo, const char* placa, int id_localAtual, bool disponivel){
         setMarca(marca);
         setModelo(modelo);
         setPlaca(placa);
-        setDisponivel(disponivel);
+        setLocalAtual(id_localAtual);
+        disponivel=true;
     }
 
     void setMarca (const char* marca){ strcpy(this->marca, marca); }
     void setModelo (const char* modelo){ strcpy(this->modelo, modelo); }
     void setPlaca (const char* placa){ strcpy(this->placa, placa); }
-    void setDisponivel (bool disponivel){ this->disponivel=disponivel; }
+    void setLocalAtual (int id_localAtual){ this->id_localAtual=id_localAtual; }
 
     const char* getMarca(){ return marca; }
     const char* getModelo(){ return modelo; }
     const char* getPlaca(){ return placa; }
+    int getLocalAtual(){ return id_localAtual; }
     bool getDisponivel(){ return disponivel; }
+};
+
+class ManagerVeiculos{
+private:
+    Veiculo veiculos[MAX];
+    int totalVeiculos=0;
+public:
+    void cadastrarVeiculo(){
+        char marca[100];
+        char modelo[100];
+        char placa[8];
+        int id_localAtual;
+        bool disponivel=true;
+
+        cout<<"Localizacao atual do veiculo:\n";
+        ManagerLocais.listaLocais();
+        cout<<"ID: ";
+        cin>>id_localAtual;
+        cin.ignore();
+        cout<<"Marca do veiculo: ";
+        cin.getline(marca, 100);
+        cout<<"Modelo do veiculo: ";
+        cin.getline(mmodelo, 100);
+        cout<<"Placa do veiculo(7 caracteres): ";
+        cin.getline(placa, 8);
+
+        veiculos[totalVeiculos]=Veiculo(marca, modelo, placa, id_localAtual, disponivel);
+    }
 };
 
 class Pedido{
