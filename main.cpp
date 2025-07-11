@@ -56,6 +56,29 @@ public:
 
         cout<<"Local cadastrado com sucesso!"<<endl;
     }
+    void atualizarLocal(){
+        char tempEndereco[300];
+        double tempCoordenadaX;
+        double tempCoordenadaY;
+        int id;
+
+        cout<<"Digite o ID do local a ser atualizado:\n";
+        listaLocais();
+        cout<<"ID: ";
+        cin>>id;
+        cin.ignore();
+        cout<<"Novo endereco: ";
+        cin.getline(tempEndereco, 300);
+        cout<<"Novas coordenadas:\n";
+        cout<<"X: ";
+        cin>>tempCoordenadaX;
+        cout<<"Y: ";
+        cin>>tempCoordenadaY;
+        cin.ignore();
+
+        locais[id-1]=Local(tempEndereco, tempCoordenadaX, tempCoordenadaY);
+        cout<<"Local atualizado com sucesso!";
+    }
 };
 
 class Veiculo{
