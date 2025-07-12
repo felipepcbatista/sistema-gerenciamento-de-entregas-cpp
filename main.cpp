@@ -210,27 +210,38 @@ private:
     int id;
     char localOrigem[300];
     char localDestino[300];
+    float pesoEntrega;
 public:
 
     Pedido(){
         id=0;
         strcpy(localOrigem, "");
         strcpy(localDestino, "");
+        pesoEntrega=0.0;
     }
 
-    Pedido(int id, const char* localOrigem, const char* localDestino){
+    Pedido(int id, const char* localOrigem, const char* localDestino, float pesoEntrega){
         setId(id);
         setOrigem(localOrigem);
         setDestino(localDestino);
+        setPeso(pesoEntrega);
     }
 
     void setID (int id){ this->id=id; }
     void setOrigem (const char* localOrigem){ strcpy(this->localOrigem, localOrigem); }
     void setDestino (const char* localDestino){ strcpy(this->localDestino, localDestino); }
+    void setPeso (float pesoEntrega){ this->pesoEntrega=pesoEntrega; }
 
     int getID(){ return id; }
     const char* getOrigem(){ return localOrigem; }
     const char* getDestino(){ return localDestino; }
+    float getPeso(){ return pesoEntrega; }
+};
+
+class ManagerPedidos{
+private:
+    Local locais[MAX];
+    Veiculo veiculos[MAX]
 };
 
 class Gerenciador{
