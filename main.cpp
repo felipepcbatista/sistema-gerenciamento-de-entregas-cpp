@@ -92,7 +92,7 @@ public:
     void removerLocal(){
         int id;
 
-        cout<<"Digite o [ID] do local a ser excluido:\n";
+        cout<<"Digite o [ID] do local a ser removido:\n";
         listaLocais();
         cout<<"ID: ";
         cin>>id;
@@ -213,6 +213,22 @@ public:
             <<"Disponibilidade: "<<veiculos[i].getDisponivel()
             <<endl;
         }
+    }
+    void removerVeiculo(){
+        int id;
+
+        cout<<"Digite o [ID] do veiculo a ser removido:\n";
+        listaVeiculos();
+        cout<<"ID: ";
+        cin>>id;
+        cin.ignore();
+
+        for(int i=id-1; i<totalVeiculos; i++){
+            veiculos[i]=veiculos[i+1];
+        }
+        totalVeiculos--;
+
+        cout<<"Veiculo removido com sucesso!"<<endl;
     }
 };
 
