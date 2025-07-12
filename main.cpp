@@ -206,7 +206,31 @@ public:
 };
 
 class Pedido{
-//Pedido vai aqui
+private:
+    int id;
+    char localOrigem[300];
+    char localDestino[300];
+public:
+
+    Pedido(){
+        id=0;
+        strcpy(localOrigem, "");
+        strcpy(localDestino, "");
+    }
+
+    Pedido(int id, const char* localOrigem, const char* localDestino){
+        setId(id);
+        setOrigem(localOrigem);
+        setDestino(localDestino);
+    }
+
+    void setID (int id){ this->id=id; }
+    void setOrigem (const char* localOrigem){ strcpy(this->localOrigem, localOrigem); }
+    void setDestino (const char* localDestino){ strcpy(this->localDestino, localDestino); }
+
+    int getID(){ return id; }
+    const char* getOrigem(){ return localOrigem; }
+    const char* getDestino(){ return localDestino; }
 };
 
 class Gerenciador{
