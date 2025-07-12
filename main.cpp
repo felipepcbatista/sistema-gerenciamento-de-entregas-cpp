@@ -150,7 +150,7 @@ private:
     Veiculo veiculos[MAX];
     int totalVeiculos=0;
 public:
-    void cadastrarVeiculo(ManagerLocais& gerLocais){
+    void cadastrarVeiculo(Locais& locais){
         char marca[100];
         char modelo[100];
         char placa[8];
@@ -170,10 +170,11 @@ public:
         cin.getline(placa, 8);
 
         char localAtual[300];
-        strcpy(localAtual, gerLocais[id_localAtual-1].getEndereco());
+        strcpy(localAtual, locais[id_localAtual-1].getEndereco());
         veiculos[totalVeiculos]=Veiculo(marca, modelo, placa, localAtual, disponivel);
+        totalVeiculos++;
     }
-    void atualizarVeiculo(ManagerLocais& gerLocais){
+    void atualizarVeiculo(Locais& locais){
         char tempMarca[100];
         char tempModelo[100];
         char tempPlaca[8];
@@ -198,9 +199,20 @@ public:
         cin>>id_tempLocalAtual;
 
         char tempLocalAtual[300];
-        strcpy(tempLocalAtual, gerLocais[id_tempLocalAtual-1].getEndereco());
+        strcpy(tempLocalAtual, locais[id_tempLocalAtual-1].getEndereco());
 
         veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
+    }
+    void listaVeiculos(Local& locais, Veiculo& veiculos){
+        for (int i=0; i<totalVeiculos; i++){
+            cout<<"["<<i+1<<"]"
+            <<" | Marca: "<<veiculos[i].getMarca()
+            <<" | Modelo: "<<veiculos[i].getModelo()
+            <<" | Placa: "<<veiculos[i].getPlaca()
+            <<" | Localizacao: "<<locais[i].getEndereco()
+            <<"Disponibilidade: "<<veiculos[i].getDisponivel()
+            <<endl;
+        }
     }
 };
 
