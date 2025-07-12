@@ -296,7 +296,7 @@ public:
         int id_tempLocalDestino;
 
         cout<<"Digite o [ID] do pedido a ser atualizado:\n";
-        locais.listaLocais();
+        listaPedidos()
         cout<<"ID: ";
         cin>>idPedido;
         cout<<"Digite o [ID] do novo local de origem da entrega:\n";
@@ -307,6 +307,7 @@ public:
         locais.listaLocais();
         cout<<"ID: ";
         cin>>id_tempLocalDestino;
+        cin.ignore();
 
         char tempLocalOrigem[300];
         char tempLocalDestino[300];
@@ -322,6 +323,22 @@ public:
             <<" | Destino: "<<pedidos[i].getDestino()
             <<endl;
         }
+    }
+    void removerPedido(){
+        int idPedido;
+
+        cout<<"Informe o [ID] do pedido a ser removido:\n";
+        listaPedidos();
+        cout<<"ID: ";
+        cin>>idPedido;
+        cin.ignore();
+
+        for (int i=idPedido-1; i<totalPedidos; i++){
+            pedidos[i]=pedidos[i+1];
+        }
+        totalPedidos--;
+
+        cout<<"Pedido removido com sucesso!"<<endl;
     }
 };
 
