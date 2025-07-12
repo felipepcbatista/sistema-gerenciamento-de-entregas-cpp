@@ -174,8 +174,35 @@ public:
         strcpy(localAtual, locais[id_localAtual-1].getEndereco());
         veiculos[totalVeiculos]=Veiculo(marca, modelo, placa, localAtual, disponivel);
     }
+    void atualizarVeiculo(){
+        char tempMarca[100];
+        char tempModelo[100];
+        char tempPlaca[8];
+        int id;
+        int id_tempLocalAtual[300];
+        bool tempDisponivel=true;
 
+        cout<<"Digite o [ID] do veiculo a ser atualizado:\n";
+        listaVeiculos();
+        cout<<"ID: ";
+        cin>>id;
+        cin.ignore();
+        cout<<"Nova marca do veiculo: ";
+        cin.getline(tempMarca, 100);
+        cout<<"Novo modelo do veiculo: ";
+        cin.getline(tempModelo, 100);
+        cout<<"Nova placa do veiculo: ";
+        cin.getline(tempPlaca, 8);
+        cout<<"Digite o [ID] da nova localizacao do veiculo:\n";
+        locais.listaLocais();
+        cout<<"ID: ";
+        cin>>id_tempLocalAtual;
 
+        char tempLocalAtual[300];
+        strcpy(tempLocalAtual, locais[id_tempLocalAtual-1].getEndereco());
+
+        veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
+    }
 };
 
 class Pedido{
