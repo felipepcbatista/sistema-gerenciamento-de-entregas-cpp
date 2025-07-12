@@ -315,6 +315,14 @@ public:
 
         pedidos[idPedido-1]=Pedido(idPedido-1, tempLocalOrigem, tempLocalDestino);
     }
+    void listaPedidos(){
+        for (int i=0; i<totalPedidos; i++){
+            cout<<"["<<pedidos[i].getID()<<"]"
+            <<" | Origem: "<<pedidos[i].getOrigem()
+            <<" | Destino: "<<pedidos[i].getDestino()
+            <<endl;
+        }
+    }
 };
 
 class Gerenciador{
