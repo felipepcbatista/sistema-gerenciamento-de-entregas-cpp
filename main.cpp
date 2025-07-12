@@ -112,7 +112,7 @@ private:
     char marca[100];
     char modelo[100];
     char placa[8];
-    int id_localAtual;
+    char localAtual;
     bool disponivel;
 public:
 
@@ -124,29 +124,31 @@ public:
         disponivel=true;
     }
 
-    Veiculo(const char* marca, const char* modelo, const char* placa, int id_localAtual, bool disponivel){
+    Veiculo(const char* marca, const char* modelo, const char* placa, const char* localAtual, bool disponivel){
         setMarca(marca);
         setModelo(modelo);
         setPlaca(placa);
-        setLocalAtual(id_localAtual);
-        disponivel=true;
+        setLocalAtual(localAtual);
+        setDisponivel(disponivel);
     }
 
     void setMarca (const char* marca){ strcpy(this->marca, marca); }
     void setModelo (const char* modelo){ strcpy(this->modelo, modelo); }
     void setPlaca (const char* placa){ strcpy(this->placa, placa); }
-    void setLocalAtual (int id_localAtual){ this->id_localAtual=id_localAtual; }
+    void setLocalAtual (const char* localAtual){ strcpy(this->localAtual, localAtual); }
+    void setDisponivel (bool disponivel){ this->disponivel=disponivel; }
 
     const char* getMarca(){ return marca; }
     const char* getModelo(){ return modelo; }
     const char* getPlaca(){ return placa; }
-    int getLocalAtual(){ return id_localAtual; }
+    const char* getLocalAtual(){ return localAtual; }
     bool getDisponivel(){ return disponivel; }
 };
 
 class ManagerVeiculos{
 private:
     Veiculo veiculos[MAX];
+    Local locais[MAX];
     int totalVeiculos=0;
 public:
     void cadastrarVeiculo(){
@@ -164,12 +166,16 @@ public:
         cout<<"Marca do veiculo: ";
         cin.getline(marca, 100);
         cout<<"Modelo do veiculo: ";
-        cin.getline(mmodelo, 100);
+        cin.getline(modelo, 100);
         cout<<"Placa do veiculo(7 caracteres): ";
         cin.getline(placa, 8);
 
-        veiculos[totalVeiculos]=Veiculo(marca, modelo, placa, id_localAtual, disponivel);
+        char localAtual[300];
+        strcpy(localAtual, locais[id_localAtual-1].getEndereco());
+        veiculos[totalVeiculos]=Veiculo(marca, modelo, placa, localAtual, disponivel);
     }
+
+
 };
 
 class Pedido{
