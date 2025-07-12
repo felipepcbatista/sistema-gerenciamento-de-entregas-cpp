@@ -148,10 +148,9 @@ public:
 class ManagerVeiculos{
 private:
     Veiculo veiculos[MAX];
-    Local locais[MAX];
     int totalVeiculos=0;
 public:
-    void cadastrarVeiculo(){
+    void cadastrarVeiculo(ManagerLocais& gerLocais){
         char marca[100];
         char modelo[100];
         char placa[8];
@@ -159,7 +158,7 @@ public:
         bool disponivel=true;
 
         cout<<"Localizacao atual do veiculo:\n";
-        ManagerLocais.listaLocais();
+        gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_localAtual;
         cin.ignore();
@@ -171,10 +170,10 @@ public:
         cin.getline(placa, 8);
 
         char localAtual[300];
-        strcpy(localAtual, locais[id_localAtual-1].getEndereco());
+        strcpy(localAtual, gerLocais[id_localAtual-1].getEndereco());
         veiculos[totalVeiculos]=Veiculo(marca, modelo, placa, localAtual, disponivel);
     }
-    void atualizarVeiculo(){
+    void atualizarVeiculo(ManagerLocais& gerLocais){
         char tempMarca[100];
         char tempModelo[100];
         char tempPlaca[8];
@@ -199,7 +198,7 @@ public:
         cin>>id_tempLocalAtual;
 
         char tempLocalAtual[300];
-        strcpy(tempLocalAtual, locais[id_tempLocalAtual-1].getEndereco());
+        strcpy(tempLocalAtual, gerLocais[id_tempLocalAtual-1].getEndereco());
 
         veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
     }
@@ -240,8 +239,7 @@ public:
 
 class ManagerPedidos{
 private:
-    Local locais[MAX];
-    Veiculo veiculos[MAX]
+    Pedido pedidos[MAX];
 };
 
 class Gerenciador{
