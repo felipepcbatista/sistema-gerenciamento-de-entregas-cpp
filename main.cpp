@@ -278,6 +278,7 @@ public:
         locais.listaLocais();
         cout<<"ID: ";
         cin>>id_localDestino;
+        cin.ignore();
 
         char localOrigem[300];
         char localDestino[300];
@@ -288,6 +289,31 @@ public:
         totalPedidos++;
 
         cout<<"Pedido cadastrado com sucesso!"<<endl;
+    }
+    void atualizarPedido(Local& locais){
+        int idPedido;
+        int id_tempLocalOrigem;
+        int id_tempLocalDestino;
+
+        cout<<"Digite o [ID] do pedido a ser atualizado:\n";
+        locais.listaLocais();
+        cout<<"ID: ";
+        cin>>idPedido;
+        cout<<"Digite o [ID] do novo local de origem da entrega:\n";
+        locais.listaLocais();
+        cout<<"ID: ";
+        cin>>id_tempLocalOrigem;
+        cout<<"Digite o [ID] do novo local de destino da entrega:\n";
+        locais.listaLocais();
+        cout<<"ID: ";
+        cin>>id_tempLocalDestino;
+
+        char tempLocalOrigem[300];
+        char tempLocalDestino[300];
+        strcpy(tempLocalOrigem, locais[id_tempLocalOrigem-1].getEndereco());
+        strcpy(tempLocalDestino, locais[id_tempLocalDestino-1].getEndereco());
+
+        pedidos[idPedido-1]=Pedido(idPedido-1, tempLocalOrigem, tempLocalDestino);
     }
 };
 
