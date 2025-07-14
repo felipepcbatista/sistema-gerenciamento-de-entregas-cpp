@@ -105,6 +105,8 @@ public:
 
         cout<<"Local removido com sucesso!"<<endl;
     }
+
+    const char* getEnderecoByID(int id){ return locais[id-1].getEndereco(); }
 };
 
 class Veiculo{
@@ -150,11 +152,11 @@ private:
     Veiculo veiculos[MAX];
     int totalVeiculos=0;
 public:
-    void cadastrarVeiculo(Locais& locais){
+    void cadastrarVeiculo(Local& locais, ManagerLocais& gerLocais){
         char marca[100];
         char modelo[100];
         char placa[8];
-        int id_localAtual;
+        int id_localAtual=-1;
         bool disponivel=true;
 
         cout<<"Localizacao atual do veiculo:\n";
@@ -170,16 +172,16 @@ public:
         cin.getline(placa, 8);
 
         char localAtual[300];
-        strcpy(localAtual, locais[id_localAtual-1].getEndereco());
+        strcpy(localAtual, gerLocais.getEnderecoByID(id_localAtual));
         veiculos[totalVeiculos]=Veiculo(marca, modelo, placa, localAtual, disponivel);
         totalVeiculos++;
     }
-    void atualizarVeiculo(Locais& locais){
+    void atualizarVeiculo(Local& locais, ManagerLocais& gerLocais){
         char tempMarca[100];
         char tempModelo[100];
         char tempPlaca[8];
         int id;
-        int id_tempLocalAtual[300];
+        int id_tempLocalAtual=-1;
         bool tempDisponivel=true;
 
         cout<<"Digite o [ID] do veiculo a ser atualizado:\n";
@@ -199,11 +201,11 @@ public:
         cin>>id_tempLocalAtual;
 
         char tempLocalAtual[300];
-        strcpy(tempLocalAtual, locais[id_tempLocalAtual-1].getEndereco());
+        strcpy(tempLocalAtual, gerLocais.getEnderecoByID(id_tempLocalAtual));
 
         veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
     }
-    void listaVeiculos(Local& locais, Veiculo& veiculos){
+    void listaVeiculos(){
         for (int i=0; i<totalVeiculos; i++){
             cout<<"["<<i+1<<"]"
             <<" | Marca: "<<veiculos[i].getMarca()
@@ -265,7 +267,7 @@ private:
     Pedido pedidos[MAX];
     int totalPedidos=0;
 public:
-    void cadastrarPedido(Local& locais){
+    void cadastrarPedido(Local& locais, ManagerLocais& gerLocais){
         int idPedido=totalPedidos;
         int id_localOrigem;
         int id_localDestino;
@@ -290,13 +292,13 @@ public:
 
         cout<<"Pedido cadastrado com sucesso!"<<endl;
     }
-    void atualizarPedido(Local& locais){
+    void atualizarPedido(Local& locais, ManagerLocais& gerLocais){
         int idPedido;
         int id_tempLocalOrigem;
         int id_tempLocalDestino;
 
         cout<<"Digite o [ID] do pedido a ser atualizado:\n";
-        listaPedidos()
+        listaPedidos();
         cout<<"ID: ";
         cin>>idPedido;
         cout<<"Digite o [ID] do novo local de origem da entrega:\n";
@@ -340,10 +342,6 @@ public:
 
         cout<<"Pedido removido com sucesso!"<<endl;
     }
-};
-
-class Gerenciador{
-//Gerenciador de Locais, Veículos e Pedidos vai aqui
 };
 
 class Rotas{
