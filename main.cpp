@@ -2,6 +2,7 @@
 #include <cstring>
 #include <limits>
 #include <fstream>
+#include <math.h>
 #define MAX 100
 
 class Local{
@@ -107,6 +108,14 @@ public:
     }
 
     const char* getEnderecoByID(int id){ return locais[id-1].getEndereco(); }
+    int getIDporEndereco(const char* endereco){
+        for (int i=0; i<totalLocais; i++){
+            if(strcmp(endereco, locais[i].getEndereco())==0)
+                return i;
+        }
+    }
+    double getCoordenadaXporID(int id){ return locais[id].getCoordenadaX(); }
+    double getCoordenadaYporID(int id){ return locais[id].getCoordenadaY(); }
 };
 
 class Veiculo{
@@ -114,7 +123,7 @@ private:
     char marca[100];
     char modelo[100];
     char placa[8];
-    char localAtual;
+    char localAtual[300];
     bool disponivel;
 public:
 
@@ -205,7 +214,7 @@ public:
 
         veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
     }
-    void listaVeiculos(){
+    void listaVeiculos(ManagerLocais& locais){
         for (int i=0; i<totalVeiculos; i++){
             cout<<"["<<i+1<<"]"
             <<" | Marca: "<<veiculos[i].getMarca()
@@ -232,6 +241,9 @@ public:
 
         cout<<"Veiculo removido com sucesso!"<<endl;
     }
+
+    int getTotalVeiculos(){ return totalVeiculos; }
+    Veiculo& getVeiculo(int id){ return veiculos[id]; }
 };
 
 class Pedido{
@@ -342,10 +354,69 @@ public:
 
         cout<<"Pedido removido com sucesso!"<<endl;
     }
+
+    Pedido getPedidoByID(int id){
+        return pedidos[id-1];
+    }
 };
 
 class Rotas{
-//Rotas vai aqui
+private:
+    double calcularDistancia(double x1, double y1, double x2, double y2){
+    return sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
+    }
+public:
+
+    void simularEntrega(ManagerLocais& locais, ManagerVeiculos& veiculos, ManagerPedidos& pedidos){
+        int idPedido;
+        cout<<"ID do pedido: ";
+        cin>>idPedido;
+
+        Pedido pedido = pedidos.getPedidoByID(idPedido);
+
+        const char* origemEndereco = pedido.getOrigem();
+        const char* destinoEndereco = pedido.getDestino();
+
+        int idOrigem = locais.getIDporEndereco(origemEndereco);
+        int idDestino = locais.getIDporEndereco(destinoEndereco);
+
+        double origemX = locais.getCoordenadaXporID(idOrigem);
+        double origemY = locais.getCoordenadaYporID(idOrigem);
+        double destinoX = locais.getCoordenadaXporID(idDestino);
+        double destinoY = locais.getCoordenadaYporID(idDestino);
+
+        int idMelhorVeiculo = -1;
+        double menorDistancia = std::numeric_limits<double>::max();
+
+        for (int i=0; i<veiculos.getTotalVeiculos(); i++){
+            if (veiculos.getVeiculo(i).getDisponivel()){
+                const char* localVeiculo = veiculos.getVeiculo(i).getLocalAtual();
+                int idLocalVeiculo = locais.getIDporEndereco(localVeiculo);
+
+                double veiculoX = locais.getCoordenadaXporID(idLocalVeiculo);
+                double veiculoY = locais.getCoordenadaYporID(idLocalVeiculo);
+
+                double distanciaAteOrigem = calcularDistancia(veiculoX, veiculoY, origemX, origemY);
+                if(distanciaAteOrigem < menorDistancia){
+                    menorDistancia=distanciaAteOrigem;
+                    idMelhorVeiculo=i;
+                }
+            }
+        }
+
+        double distanciaEntrega = calcularDistancia(origemX, origemY, destinoX, destinoY);
+
+        cout<<"ENTREGA:\n";
+        cout<<"Veiculo escolhido: [ "<<idMelhorVeiculo+1<< "] "
+        <<veiculos.getVeiculo(idMelhorVeiculo).getMarca()<<" "<<veiculos.getVeiculo(idMelhorVeiculo).getModelo()
+        <<" - Placa: "<<veiculos.getVeiculo(idMelhorVeiculo).getPlaca()<<endl;
+        cout<<"Distancia ate o local de origem: "<<menorDistancia<<" km\n";
+        cout<<"Distancia da entrega (origem -> destino): "<<distanciaEntrega<<"km\n";
+        cout<<"Tempo estimado da entrega: "<<(distanciaEntrega/30)*60<<" minutos\n";
+
+        veiculos.getVeiculo(idMelhorVeiculo).setLocalAtual(destinoEndereco);
+        veiculos.getVeiculo(idMelhorVeiculo).setDisponivel(false);
+    }
 };
 
 int main()
