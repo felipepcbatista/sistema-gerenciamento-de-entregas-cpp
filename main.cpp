@@ -219,13 +219,13 @@ public:
 
         veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
     }
-    void listaVeiculos(ManagerLocais& locais){
+    void listaVeiculos(ManagerLocais& gerLocais){
         for (int i=0; i<totalVeiculos; i++){
             cout<<"["<<i+1<<"]"
             <<" | Marca: "<<veiculos[i].getMarca()
             <<" | Modelo: "<<veiculos[i].getModelo()
             <<" | Placa: "<<veiculos[i].getPlaca()
-            <<" | Localizacao: "<<locais[i].getEndereco()
+            <<" | Localizacao: "<<gerLocais[i].getEndereco()
             <<"Disponibilidade: "<<veiculos[i].getDisponivel()
             <<endl;
         }
@@ -377,34 +377,34 @@ private:
     }
 public:
 
-    void simularEntrega(ManagerLocais& locais, ManagerVeiculos& veiculos, ManagerPedidos& pedidos){
+    void simularEntrega(ManagerLocais& gerLocais, ManagerVeiculos& gerVeiculos, ManagerPedidos& gerPedidos){
         int idPedido;
         cout<<"ID do pedido: ";
         cin>>idPedido;
 
-        Pedido pedido = pedidos.getPedidoByID(idPedido);
+        Pedido pedido = gerPedidos.getPedidoByID(idPedido);
 
         const char* origemEndereco = pedido.getOrigem();
         const char* destinoEndereco = pedido.getDestino();
 
-        int idOrigem = locais.getIDporEndereco(origemEndereco);
-        int idDestino = locais.getIDporEndereco(destinoEndereco);
+        int idOrigem = gerLocais.getIDporEndereco(origemEndereco);
+        int idDestino = gerLocais.getIDporEndereco(destinoEndereco);
 
-        double origemX = locais.getCoordenadaXporID(idOrigem);
-        double origemY = locais.getCoordenadaYporID(idOrigem);
-        double destinoX = locais.getCoordenadaXporID(idDestino);
-        double destinoY = locais.getCoordenadaYporID(idDestino);
+        double origemX = gerLocais.getCoordenadaXporID(idOrigem);
+        double origemY = gerLocais.getCoordenadaYporID(idOrigem);
+        double destinoX = gerLocais.getCoordenadaXporID(idDestino);
+        double destinoY = gerLocais.getCoordenadaYporID(idDestino);
 
         int idMelhorVeiculo = -1;
         double menorDistancia = std::numeric_limits<double>::max();
 
-        for (int i=0; i<veiculos.getTotalVeiculos(); i++){
-            if (veiculos.getVeiculo(i).getDisponivel()){
-                const char* localVeiculo = veiculos.getVeiculo(i).getLocalAtual();
-                int idLocalVeiculo = locais.getIDporEndereco(localVeiculo);
+        for (int i=0; i<gerVeiculos.getTotalVeiculos(); i++){
+            if (gerVeiculos.getVeiculo(i).getDisponivel()){
+                const char* localVeiculo = gerVeiculos.getVeiculo(i).getLocalAtual();
+                int idLocalVeiculo = gerLocais.getIDporEndereco(localVeiculo);
 
-                double veiculoX = locais.getCoordenadaXporID(idLocalVeiculo);
-                double veiculoY = locais.getCoordenadaYporID(idLocalVeiculo);
+                double veiculoX = gerLocais.getCoordenadaXporID(idLocalVeiculo);
+                double veiculoY = gerLocais.getCoordenadaYporID(idLocalVeiculo);
 
                 double distanciaAteOrigem = calcularDistancia(veiculoX, veiculoY, origemX, origemY);
                 if(distanciaAteOrigem < menorDistancia){
@@ -418,14 +418,14 @@ public:
 
         cout<<"ENTREGA:\n";
         cout<<"Veiculo escolhido: [ "<<idMelhorVeiculo+1<< "] "
-        <<veiculos.getVeiculo(idMelhorVeiculo).getMarca()<<" "<<veiculos.getVeiculo(idMelhorVeiculo).getModelo()
-        <<" - Placa: "<<veiculos.getVeiculo(idMelhorVeiculo).getPlaca()<<endl;
+        <<gerVeiculos.getVeiculo(idMelhorVeiculo).getMarca()<<" "<<gerVeiculos.getVeiculo(idMelhorVeiculo).getModelo()
+        <<" - Placa: "<<gerVeiculos.getVeiculo(idMelhorVeiculo).getPlaca()<<endl;
         cout<<"Distancia ate o local de origem: "<<menorDistancia<<" km\n";
         cout<<"Distancia da entrega (origem -> destino): "<<distanciaEntrega<<"km\n";
         cout<<"Tempo estimado da entrega: "<<(distanciaEntrega/30)*60<<" minutos\n";
 
-        veiculos.getVeiculo(idMelhorVeiculo).setLocalAtual(destinoEndereco);
-        veiculos.getVeiculo(idMelhorVeiculo).setDisponivel(false);
+        gerVeiculos.getVeiculo(idMelhorVeiculo).setLocalAtual(destinoEndereco);
+        gerVeiculos.getVeiculo(idMelhorVeiculo).setDisponivel(false);
     }
 };
 
@@ -552,5 +552,38 @@ public:
         cout<<"[15]Carregar Dados\n";
         cout<<"[0]Sair\n";
         cout<<"Escolha uma opcao: ";
+    }
+
+    void tratarOpcao(int opc){
+        switch(opc){
+            case 1: gerLocais.cadastrarLocal();break;
+            case 2: gerLocais.atualizarLocal();break;
+            case 3: gerLocais.removerLocal();break;
+            case 4: gerLocais.listaLocais();break;
+            case 5: gerVeiculos.cadastrarVeiculo(gerLocais);break;
+            case 6: gerVeiculos.atualizarVeiculo(gerLocais);break;
+            case 7: gerVeiculos.removerVeiculo();break;
+            case 8: gerVeiculos.listaVeiculos(gerLocais);break;
+            case 9: gerPedidos.cadastrarPedido(gerLocais);break;
+            case 10: gerPedidos.atualizarPedido(gerLocais);break;
+            case 11: gerPedidos.removerPedido();break;
+            case 12: gerPedidos.listaPedidos();break;
+            case 13: simuladorRotas.simularEntrega(gerLocais, gerVeiculos, gerPedidos);break;
+            case 14:
+                persistencia.salvarLocais(gerLocais);
+                persistencia.salvarVeiculos(gerVeiculos);
+                persistencia.salvarPedidos(gerPedidos);
+                break;
+            case 15:
+                persistencia.carregarLocais(gerLocais);
+                persistencia.carregarVeiculos(gerVeiculos);
+                persistencia.carregarPedidos(gerPedidos);
+                break;
+            case 0:
+                cout<<"Encerrando...\n";
+                break;
+            default:
+                cout<<"Opcao invalida\n";
         }
+    }
 };
