@@ -432,6 +432,18 @@ public:
 class Data{
 public:
 
+    void salvarLocais(ManagerLocais& gerLocais){
+        ofstream out("locais.dat", ios::binary);
+        if(!out){
+            cout<<"Erro ao abrir arquivo para backup de locais.\n";
+            return;
+        }
+        int total = gerLocais.getTotalLocais();
+        out.write((char*)&total, sizeof(total));
+        out.write((char*)gerLocais.getArrayLocais(), sizeof(Local)*total);
+        out.close();
+        cout<<"Backup de locais concluido com sucesso.\n";
+    }
 
 };
 
