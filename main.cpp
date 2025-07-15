@@ -458,6 +458,19 @@ public:
         in.close();
         cout<<"Locais restaurados do backup com sucesso.\n";
     }
+
+    void salvarVeiculos(ManagerVeiculos& gerVeiculos){
+        ofstream out("veiculos.dat", ios::binary);
+        if(!out){
+            cout<<"Erro ao abrir arquivo para backup de veiculos.\n";
+            return;
+        }
+        int total = gerVeiculos.getTotalVeiculos();
+        out.write((char*)&total, sizeof(total));
+        out.write((char*)gerVeiculos.getArrayVeiculos(), sizeof(Veiculo)*total);
+        out.close();
+        cout<<"Backup de veiculos concluido com sucesso.\n";
+    }
 };
 
 int main()
