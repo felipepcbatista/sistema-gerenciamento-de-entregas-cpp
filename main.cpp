@@ -526,10 +526,31 @@ public:
     void executar(){
         int opcao;
         do{
-            mostrarMenu();
+            exibirMenu();
             cin>>opcao;
             cin.ignore();
             tratarOpcao(opcao);
         }while(opcao!=0);
+    }
+
+    void exibirMenu(){
+        cout<<"=====MENU PRINCIPAL=====\n";
+        cout<<"[1]Cadastrar Local\n";
+        cout<<"[2]Atualizar Local\n";
+        cout<<"[3]Remover Local\n";
+        cout<<"[4]Listar Locais\n";
+        cout<<"[5]Cadastrar Veiculo\n";
+        cout<<"[6]Atualizar Veiculo\n";
+        cout<<"[7]Remover Veiculo\n";
+        cout<<"[8]Listar Veiculos\n";
+        cout<<"[9]Cadastrar Pedido\n";
+        cout<<"[10]Atualizar Pedido\n";
+        cout<<"[11]Remover Pedido\n";
+        cout<<"[12]Listar Pedidos\n";
+        cout<<"[13]Simular Entrega\n";
+        cout<<"[14]Salvar Dados\n";
+        cout<<"[15]Carregar Dados\n";
+        cout<<"[0]Sair\n";
+        cout<<"Escolha uma opcao: ";
     }
 };
