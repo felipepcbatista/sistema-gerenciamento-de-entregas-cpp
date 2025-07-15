@@ -498,6 +498,20 @@ public:
         out.close();
         cout<<"Backup de pedidos concluido com sucesso.\n";
     }
+
+    void carregarPedidos(ManagerPedidos& gerPedidos){
+        ifstream in("pedidos.dat", ios::binary);
+        if(!in){
+            cout<<"Nenhum backup de pedidos encontrado.\n";
+            return;
+        }
+        int total;
+        in.read((char*)&total, sizeof(total));
+        in.read((char*)gerPedidos.getArrayPedidos(), sizeof(Pedido)*total);
+        gerPedidos.setTotalPedidos(total);
+        in.close();
+        cout<<"Veiculos restaurados do backup com sucesso.\n";
+    }
 };
 
 int main()
