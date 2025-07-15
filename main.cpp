@@ -485,6 +485,19 @@ public:
         in.close();
         cout<<"Veiculos restaurados do backup com sucesso.\n";
     }
+
+    void salvarPedidos(ManagerPedidos& gerPedidos){
+        ofstream out("pedidos.dat", ios::binary);
+        if(!out){
+            cout<<"Erro ao abrir arquivo para backup de pedidos.\n";
+            return;
+        }
+        int total = gerPedidos.getTotalPedidos();
+        out.write((char*)&total, sizeof(total));
+        out.write((char*)gerPedidos.getArrayPedidos(), sizeof(Pedido)*total);
+        out.close();
+        cout<<"Backup de pedidos concluido com sucesso.\n";
+    }
 };
 
 int main()
