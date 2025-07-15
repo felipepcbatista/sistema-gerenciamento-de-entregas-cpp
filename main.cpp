@@ -445,6 +445,19 @@ public:
         cout<<"Backup de locais concluido com sucesso.\n";
     }
 
+    void carregarLocais(ManagerLocais& gerLocais){
+        ifstream in("locais.dat", ios::binary);
+        if(!in){
+            cout<<"Nenhum backup de locais encontrado.\n";
+            return;
+        }
+        int total;
+        in.read((char*)&total, sizeof(total));
+        in.read((char*)gerLocais.getArrayLocais(), sizeof(Local)*total);
+        gerLocais.setTotalLocais(total);
+        in.close();
+        cout<<"Locais restaurados do backup com sucesso.\n";
+    }
 };
 
 int main()
