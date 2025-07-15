@@ -190,7 +190,7 @@ public:
         veiculos[totalVeiculos]=Veiculo(marca, modelo, placa, localAtual, disponivel);
         totalVeiculos++;
     }
-    void atualizarVeiculo(Local& locais, ManagerLocais& gerLocais){
+    void atualizarVeiculo(ManagerLocais& gerLocais){
         char tempMarca[100];
         char tempModelo[100];
         char tempPlaca[8];
@@ -210,7 +210,7 @@ public:
         cout<<"Nova placa do veiculo: ";
         cin.getline(tempPlaca, 8);
         cout<<"Digite o [ID] da nova localizacao do veiculo:\n";
-        locais.listaLocais();
+        gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_tempLocalAtual;
 
@@ -312,7 +312,7 @@ public:
 
         cout<<"Pedido cadastrado com sucesso!"<<endl;
     }
-    void atualizarPedido(Local& locais, ManagerLocais& gerLocais){
+    void atualizarPedido(ManagerLocais& gerLocais){
         int idPedido;
         int id_tempLocalOrigem;
         int id_tempLocalDestino;
@@ -322,19 +322,19 @@ public:
         cout<<"ID: ";
         cin>>idPedido;
         cout<<"Digite o [ID] do novo local de origem da entrega:\n";
-        locais.listaLocais();
+        gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_tempLocalOrigem;
         cout<<"Digite o [ID] do novo local de destino da entrega:\n";
-        locais.listaLocais();
+        gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_tempLocalDestino;
         cin.ignore();
 
         char tempLocalOrigem[300];
         char tempLocalDestino[300];
-        strcpy(tempLocalOrigem, locais[id_tempLocalOrigem-1].getEndereco());
-        strcpy(tempLocalDestino, locais[id_tempLocalDestino-1].getEndereco());
+        strcpy(tempLocalOrigem, gerLocais.getEnderecoByID(id_tempLocalOrigem));
+        strcpy(tempLocalDestino, gerLocais.getEnderecoByID(id_tempLocalDestino));
 
         pedidos[idPedido-1]=Pedido(idPedido-1, tempLocalOrigem, tempLocalDestino);
     }
@@ -552,5 +552,5 @@ public:
         cout<<"[15]Carregar Dados\n";
         cout<<"[0]Sair\n";
         cout<<"Escolha uma opcao: ";
-    }
+        }
 };
