@@ -587,3 +587,10 @@ public:
         }
     }
 };
+
+int main()
+{
+    Sistema sistema;
+    sistema.executar();
+    return 0;
+}
