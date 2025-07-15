@@ -114,8 +114,13 @@ public:
                 return i;
         }
     }
+
+    void setTotalLocais(int total){ totalLocais=total; }
+
     double getCoordenadaXporID(int id){ return locais[id].getCoordenadaX(); }
     double getCoordenadaYporID(int id){ return locais[id].getCoordenadaY(); }
+    int getTotalLocais() { return totalLocais; }
+    Local* getArrayLocais() { return locais; }
 };
 
 class Veiculo{
@@ -242,8 +247,11 @@ public:
         cout<<"Veiculo removido com sucesso!"<<endl;
     }
 
+    void setTotalVeiculos(int total){ totalVeiculos=total; }
+
     int getTotalVeiculos(){ return totalVeiculos; }
     Veiculo& getVeiculo(int id){ return veiculos[id]; }
+    Veiculo* getArrayVeiculos(){ return veiculos; }
 };
 
 class Pedido{
@@ -355,9 +363,11 @@ public:
         cout<<"Pedido removido com sucesso!"<<endl;
     }
 
-    Pedido getPedidoByID(int id){
-        return pedidos[id-1];
-    }
+    void setTotalPedidos(int total){ totalPedidos=total; }
+
+    Pedido getPedidoByID(int id){ return pedidos[id-1]; }
+    int getTotalPedidos() { return totalPedidos; }
+    Pedido* getArrayPedidos(){ return pedidos; }
 };
 
 class Rotas{
@@ -417,6 +427,12 @@ public:
         veiculos.getVeiculo(idMelhorVeiculo).setLocalAtual(destinoEndereco);
         veiculos.getVeiculo(idMelhorVeiculo).setDisponivel(false);
     }
+};
+
+class Data{
+public:
+
+
 };
 
 int main()
