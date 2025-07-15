@@ -514,7 +514,9 @@ public:
     }
 };
 
-int main()
-{
-    //Main vai aqui
-}
+class Sistema{
+private:
+
+public:
+
+};
