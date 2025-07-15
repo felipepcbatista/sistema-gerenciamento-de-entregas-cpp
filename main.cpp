@@ -471,6 +471,20 @@ public:
         out.close();
         cout<<"Backup de veiculos concluido com sucesso.\n";
     }
+
+    void carregarVeiculos(ManagerVeiculos& gerVeiculos){
+        ifstream in("veiculos.dat", ios::binary);
+        if(!in){
+            cout<<"Nenhum backup de veiculos encontrado.\n";
+            return;
+        }
+        int total;
+        in.read((char*)&total, sizeof(total));
+        in.read((char*)gerVeiculos.getArrayVeiculos(), sizeof(Veiculo)*total);
+        gerVeiculos.setTotalVeiculos(total);
+        in.close();
+        cout<<"Veiculos restaurados do backup com sucesso.\n";
+    }
 };
 
 int main()
