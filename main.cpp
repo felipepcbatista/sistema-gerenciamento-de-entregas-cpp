@@ -516,7 +516,20 @@ public:
 
 class Sistema{
 private:
-
+    ManagerLocais gerLocais;
+    ManagerVeiculos gerVeiculos;
+    ManagerPedidos gerPedidos;
+    Rotas simuladorRotas;
+    Data persistencia;
 public:
 
+    void executar(){
+        int opcao;
+        do{
+            mostrarMenu();
+            cin>>opcao;
+            cin.ignore();
+            tratarOpcao(opcao);
+        }while(opcao!=0);
+    }
 };
