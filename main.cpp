@@ -166,7 +166,7 @@ private:
     Veiculo veiculos[MAX];
     int totalVeiculos=0;
 public:
-    void cadastrarVeiculo(Local& locais, ManagerLocais& gerLocais){
+    void cadastrarVeiculo(ManagerLocais& gerLocais){
         char marca[100];
         char modelo[100];
         char placa[8];
@@ -287,25 +287,25 @@ private:
     Pedido pedidos[MAX];
     int totalPedidos=0;
 public:
-    void cadastrarPedido(Local& locais, ManagerLocais& gerLocais){
+    void cadastrarPedido(ManagerLocais& gerLocais){
         int idPedido=totalPedidos;
         int id_localOrigem;
         int id_localDestino;
 
         cout<<"Digite o [ID] do local de origem da entrega:\n";
-        locais.listaLocais();
+        gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_localOrigem;
         cout<<"Digite o [ID] do local de destino da entrega:\n";
-        locais.listaLocais();
+        gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_localDestino;
         cin.ignore();
 
         char localOrigem[300];
         char localDestino[300];
-        strcpy(localOrigem, locais[id_localOrigem-1].getEndereco());
-        strcpy(localDestino, locais[id_localDestino-1].getEndereco());
+        strcpy(localOrigem, gerLocais.getEnderecoByID(id_localOrigem));
+        strcpy(localDestino, gerLocais.getEnderecoByID(id_localDestino));
 
         pedidos[totalPedidos]=Pedido(idPedido, localOrigem, localDestino);
         totalPedidos++;
