@@ -30,9 +30,9 @@ public:
     void setCoordenadaX (double coordenadaX){ this->coordenadaX=coordenadaX; }
     void setCoordenadaY (double coordenadaY){ this->coordenadaY=coordenadaY; }
 
-    const char* getEndereco(){ return endereco; }
-    double getCoordenadaX(){ return coordenadaX; }
-    double getCoordenadaY(){ return coordenadaY; }
+    const char* getEndereco()const{ return endereco; }
+    double getCoordenadaX()const{ return coordenadaX; }
+    double getCoordenadaY()const{ return coordenadaY; }
 };
 
 class ManagerLocais{
@@ -170,10 +170,10 @@ public:
 
     void setTotalLocais(int total){ totalLocais=total; }
 
-    double getCoordenadaXporID(int id){ return locais[id].getCoordenadaX(); }
-    double getCoordenadaYporID(int id){ return locais[id].getCoordenadaY(); }
-    int getTotalLocais() { return totalLocais; }
-    Local* getArrayLocais() { return locais; }
+    double getCoordenadaXporID(int id)const{ return locais[id].getCoordenadaX(); }
+    double getCoordenadaYporID(int id)const{ return locais[id].getCoordenadaY(); }
+    int getTotalLocais()const{ return totalLocais; }
+    Local* getArrayLocais()const{ return locais; }
 };
 
 class Veiculo{
@@ -207,11 +207,11 @@ public:
     void setLocalAtual (const char* localAtual){ strcpy(this->localAtual, localAtual); }
     void setDisponivel (bool disponivel){ this->disponivel=disponivel; }
 
-    const char* getMarca(){ return marca; }
-    const char* getModelo(){ return modelo; }
-    const char* getPlaca(){ return placa; }
-    const char* getLocalAtual(){ return localAtual; }
-    bool getDisponivel(){ return disponivel; }
+    const char* getMarca()const{ return marca; }
+    const char* getModelo()const{ return modelo; }
+    const char* getPlaca()const{ return placa; }
+    const char* getLocalAtual()const{ return localAtual; }
+    bool getDisponivel()const{ return disponivel; }
 };
 
 class ManagerVeiculos{
@@ -352,9 +352,9 @@ public:
 
     void setTotalVeiculos(int total){ totalVeiculos=total; }
 
-    int getTotalVeiculos(){ return totalVeiculos; }
-    Veiculo& getVeiculo(int id){ return veiculos[id]; }
-    Veiculo* getArrayVeiculos(){ return veiculos; }
+    int getTotalVeiculos()const{ return totalVeiculos; }
+    Veiculo& getVeiculo(int id)const{ return veiculos[id]; }
+    Veiculo* getArrayVeiculos()const{ return veiculos; }
 };
 
 class Pedido{
@@ -380,9 +380,9 @@ public:
     void setOrigem (const char* localOrigem){ strcpy(this->localOrigem, localOrigem); }
     void setDestino (const char* localDestino){ strcpy(this->localDestino, localDestino); }
 
-    int getID(){ return id; }
-    const char* getOrigem(){ return localOrigem; }
-    const char* getDestino(){ return localDestino; }
+    int getID()const{ return id; }
+    const char* getOrigem()const{ return localOrigem; }
+    const char* getDestino()const{ return localDestino; }
 };
 
 class ManagerPedidos{
@@ -503,9 +503,9 @@ public:
 
     void setTotalPedidos(int total){ totalPedidos=total; }
 
-    Pedido getPedidoByID(int id){ return pedidos[id-1]; }
-    int getTotalPedidos() { return totalPedidos; }
-    Pedido* getArrayPedidos(){ return pedidos; }
+    Pedido getPedidoByID(int id)const{ return pedidos[id-1]; }
+    int getTotalPedidos()const{ return totalPedidos; }
+    Pedido* getArrayPedidos()const{ return pedidos; }
 };
 
 class Rotas{
