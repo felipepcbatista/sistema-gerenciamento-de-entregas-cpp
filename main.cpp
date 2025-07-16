@@ -4,6 +4,7 @@
 #include <fstream>
 #include <math.h>
 #define MAX 100
+using namespace std;
 
 class Local{
 private:
@@ -113,6 +114,7 @@ public:
             if(strcmp(endereco, locais[i].getEndereco())==0)
                 return i;
         }
+        return -1;
     }
 
     void setTotalLocais(int total){ totalLocais=total; }
@@ -170,7 +172,7 @@ public:
         char marca[100];
         char modelo[100];
         char placa[8];
-        int id_localAtual=-1;
+        int id_localAtual;
         bool disponivel=true;
 
         cout<<"Localizacao atual do veiculo:\n";
@@ -219,13 +221,13 @@ public:
 
         veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
     }
-    void listaVeiculos(ManagerLocais& gerLocais){
+    void listaVeiculos(){
         for (int i=0; i<totalVeiculos; i++){
             cout<<"["<<i+1<<"]"
             <<" | Marca: "<<veiculos[i].getMarca()
             <<" | Modelo: "<<veiculos[i].getModelo()
             <<" | Placa: "<<veiculos[i].getPlaca()
-            <<" | Localizacao: "<<gerLocais[i].getEndereco()
+            <<" | Localizacao: "<<veiculos[i].getLocalAtual()
             <<"Disponibilidade: "<<veiculos[i].getDisponivel()
             <<endl;
         }
