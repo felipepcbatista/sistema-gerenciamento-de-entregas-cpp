@@ -281,14 +281,31 @@ public:
         cin.ignore();
         cout<<"Nova marca do veiculo: ";
         cin.getline(tempMarca, 100);
+        if(!Validador::stringNaoVazia(tempMarca)){
+            cout<<"Marca invalida.\n";
+            return;
+        }
         cout<<"Novo modelo do veiculo: ";
         cin.getline(tempModelo, 100);
+        if(!Validador::stringNaoVazia(tempModelo)){
+            cout<<"Modelo invalido.\n";
+            return;
+        }
         cout<<"Nova placa do veiculo: ";
         cin.getline(tempPlaca, 8);
+        if(!Validador::stringNaoVazia(tempPlaca) || !Validador::placaValida(tempPlaca)){
+            cout<<"Placa invalida. Deve conter exatamente 7 caracteres.\n";
+            return;
+        }
         cout<<"Digite o [ID] da nova localizacao do veiculo:\n";
         gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_tempLocalAtual;
+        if(!Validador::idValido(id_tempLocalAtual, gerLocais.getTotalLocais())){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
 
         char tempLocalAtual[300];
         strcpy(tempLocalAtual, gerLocais.getEnderecoByID(id_tempLocalAtual));
@@ -296,6 +313,11 @@ public:
         veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
     }
     void listaVeiculos(){
+        if(totalVeiculos==0){
+            cout<<"Nenhum veiculo cadastrado.\n";
+            return;
+        }
+
         for (int i=0; i<totalVeiculos; i++){
             cout<<"["<<i+1<<"]"
             <<" | Marca: "<<veiculos[i].getMarca()
@@ -313,9 +335,14 @@ public:
         listaVeiculos();
         cout<<"ID: ";
         cin>>id;
+        if(!Validador::idValido(id)){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
         cin.ignore();
 
-        for(int i=id-1; i<totalVeiculos; i++){
+        for(int i=id-1; i<totalVeiculos-1; i++){
             veiculos[i]=veiculos[i+1];
         }
         totalVeiculos--;
@@ -372,10 +399,20 @@ public:
         gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_localOrigem;
+        if(!Validador::idValido(id_localOrigem, gerLocais.getTotalLocais())){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
         cout<<"Digite o [ID] do local de destino da entrega:\n";
         gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_localDestino;
+        if(!Validador::idValido(id_localDestino, gerLocais.getTotalLocais())){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
         cin.ignore();
 
         char localOrigem[300];
@@ -397,14 +434,29 @@ public:
         listaPedidos();
         cout<<"ID: ";
         cin>>idPedido;
+        if(!Validador::idValido(idPedido, totalPedidos)){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
         cout<<"Digite o [ID] do novo local de origem da entrega:\n";
         gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_tempLocalOrigem;
+        if(!Validador::idValido(id_tempLocalOrigem, gerLocais.getTotalLocais())){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
         cout<<"Digite o [ID] do novo local de destino da entrega:\n";
         gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_tempLocalDestino;
+        if(!Validador::idValido(id_tempLocalDestino, gerLocais.getTotalLocais())){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
         cin.ignore();
 
         char tempLocalOrigem[300];
@@ -415,6 +467,11 @@ public:
         pedidos[idPedido-1]=Pedido(idPedido-1, tempLocalOrigem, tempLocalDestino);
     }
     void listaPedidos(){
+        if(totalPedidos==0){
+            cout<<"Nenhum pedido cadastrado.\n";
+            return;
+        }
+
         for (int i=0; i<totalPedidos; i++){
             cout<<"["<<pedidos[i].getID()<<"]"
             <<" | Origem: "<<pedidos[i].getOrigem()
@@ -429,6 +486,11 @@ public:
         listaPedidos();
         cout<<"ID: ";
         cin>>idPedido;
+        if(!Validador::idValido(idPedido, totalPedidos)){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
         cin.ignore();
 
         for (int i=idPedido-1; i<totalPedidos; i++){
@@ -457,6 +519,11 @@ public:
         int idPedido;
         cout<<"ID do pedido: ";
         cin>>idPedido;
+        if(!Validador::idValido(idPedido, gerPedidos.getTotalPedidos())){
+            Validador::limparEntrada();
+            cout<<"ID invalido.\n";
+            return;
+        }
 
         Pedido pedido = gerPedidos.getPedidoByID(idPedido);
 
@@ -676,23 +743,11 @@ public:
     }
 
     static bool entradaNumerica (double valor){
-        return !cin.fail();
-    }
-
-    static bool opcaoValida (int opc){
-        return opc>=0 && opc<=15;
+        return isnan(valor) && isinf(valor);
     }
 
     static bool placaValida (const char* placa){
         return strlen(placa)==7;
-    }
-
-    static bool idPedidoDuplicado (int id, ManagerPedidos& gerPedidos){
-        for (int i=0; i<gerPedidos.getTotalPedidos(); i++){
-            if (gerPedidos.getPedidoByID(i+1).getID()==id)
-                return true;
-        }
-        return false;
     }
 
     static bool dentroDoLimite (int total, int limite=MAX){
