@@ -47,11 +47,32 @@ public:
 
         cout<<"Endereco do local: ";
         cin.getline(endereco, 300);
+        if(!Validador::stringNaoVazia(endereco)){
+            cout<<"Endereco invalido.\n";
+            return;
+        }
+        for (int i=0; i<totalLocais; i++){
+            if(strcmp(endereco, locais[i].getEndereco())==0){
+                cout<<"Este endereco ja esta cadastrado.\n";
+                return;
+            }
+        }
+
         cout<<"Coordenadas:\n";
         cout<<"X: ";
         cin>>coordenadaX;
+        if(!Validador::entradaNumerica(coordenadaX)){
+            Validador::limparEntrada();
+            cout<<"Coordenada invalida.\n";
+            return;
+        }
         cout<<"Y: ";
         cin>>coordenadaY;
+        if(!Validador::entradaNumerica(coordenadaY)){
+            Validador::limparEntrada();
+            cout<<"Coordenada invalida.\n";
+            return;
+        }
         cin.ignore();
 
         locais[totalLocais]=Local(endereco, coordenadaX, coordenadaY);
@@ -69,14 +90,33 @@ public:
         listaLocais();
         cout<<"ID: ";
         cin>>id;
+        if(!Validador::entradaNumerica(id) || !Validador::idValido(id, totalLocais)){
+            Validador::limparEntrada();
+            cout<<"ID invalido. Local nao encontrado.\n";
+            return;
+        }
         cin.ignore();
         cout<<"Novo endereco: ";
         cin.getline(tempEndereco, 300);
+        if(!Validador::stringNaoVazia(tempEndereco)){
+            cout<<"Endereco invalido.\n";
+            return;
+        }
         cout<<"Novas coordenadas:\n";
         cout<<"X: ";
         cin>>tempCoordenadaX;
+        if(!Validador::entradaNumerica(tempCoordenadaX)){
+            Validador::limparEntrada();
+            cout<<"Coordenada invalida.\n";
+            return;
+        }
         cout<<"Y: ";
         cin>>tempCoordenadaY;
+        if(!Validador::entradaNumerica(tempCoordenadaY)){
+            Validador::limparEntrada();
+            cout<<"Coordenada invalida.\n";
+            return;
+        }
         cin.ignore();
 
         locais[id-1]=Local(tempEndereco, tempCoordenadaX, tempCoordenadaY);
@@ -84,6 +124,11 @@ public:
         cout<<"Local atualizado com sucesso!"<<endl;
     }
     void listaLocais(){
+        if(totalLocais==0){
+            cout<<"Nenhum local cadastrado.\n";
+            return;
+        }
+
         for (int i=0; i<totalLocais; i++){
             cout<<"["<<i+1<<"]"
             <<" | Endereco: "<<locais[i].getEndereco()
@@ -99,6 +144,11 @@ public:
         listaLocais();
         cout<<"ID: ";
         cin>>id;
+        if(!Validador::entradaNumerica(id) || !Validador::idValido(id, totalLocais)){
+            Validador::limparEntrada();
+            cout<<"ID invalido. Local nao encontrado.\n";
+            return;
+        }
         cin.ignore();
 
         for (int i=id-1; i<totalLocais-1; i++){
@@ -139,7 +189,7 @@ public:
         strcpy(marca, "");
         strcpy(modelo, "");
         strcpy(placa, "");
-        id_localAtual=-1;
+        strcpy(localAtual, "");
         disponivel=true;
     }
 
@@ -176,17 +226,35 @@ public:
         int id_localAtual;
         bool disponivel=true;
 
-        cout<<"Localizacao atual do veiculo:\n";
+        cout<<"Digite o ID da localizacao atual do veiculo:\n";
         gerLocais.listaLocais();
         cout<<"ID: ";
         cin>>id_localAtual;
+        if(!Validador::idValido(id, gerLocais.getTotalLocais())){
+            Validador::limparEntrada();
+            cout<<"ID invalido. Local nao encontrado.\n";
+            return;
+        }
         cin.ignore();
         cout<<"Marca do veiculo: ";
         cin.getline(marca, 100);
+        if(!Validador::stringNaoVazia(marca)){
+            cout<<"Marca invalida.\n";
+            return;
+        }
         cout<<"Modelo do veiculo: ";
         cin.getline(modelo, 100);
+        if(!Validador::stringNaoVazia(modelo)){
+            cout<<"Modelo invalida.\n";
+            return;
+        }
         cout<<"Placa do veiculo(7 caracteres): ";
         cin.getline(placa, 8);
+        if(!Validador::placaValida(placa)){
+            Validador::limparEntrada();
+            cout<<"Placa invalida. Deve conter exatamente 7 caracteres.\n";
+            return;
+        }
 
         char localAtual[300];
         strcpy(localAtual, gerLocais.getEnderecoByID(id_localAtual));
@@ -205,6 +273,11 @@ public:
         listaVeiculos();
         cout<<"ID: ";
         cin>>id;
+        if(!Validador::entradaNumerica(id) || !Validador::idValido(id, totalVeiculos)){
+            Validador::limparEntrada();
+            cout<<"ID invalido. Veiculo nao encontrado.\n";
+            return;
+        }
         cin.ignore();
         cout<<"Nova marca do veiculo: ";
         cin.getline(tempMarca, 100);
@@ -271,7 +344,7 @@ public:
     }
 
     Pedido(int id, const char* localOrigem, const char* localDestino){
-        setId(id);
+        setID(id);
         setOrigem(localOrigem);
         setDestino(localDestino);
     }
@@ -566,7 +639,7 @@ public:
             case 5: gerVeiculos.cadastrarVeiculo(gerLocais);break;
             case 6: gerVeiculos.atualizarVeiculo(gerLocais);break;
             case 7: gerVeiculos.removerVeiculo();break;
-            case 8: gerVeiculos.listaVeiculos(gerLocais);break;
+            case 8: gerVeiculos.listaVeiculos();break;
             case 9: gerPedidos.cadastrarPedido(gerLocais);break;
             case 10: gerPedidos.atualizarPedido(gerLocais);break;
             case 11: gerPedidos.removerPedido();break;
@@ -602,7 +675,7 @@ public:
         return str!=nullptr && strlen(str)>0;
     }
 
-    static bool coordenadaValida (double valor){
+    static bool entradaNumerica (double valor){
         return !cin.fail();
     }
 
