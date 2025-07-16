@@ -2,7 +2,8 @@
 #include <cstring>
 #include <limits>
 #include <fstream>
-#include <math.h>
+#include <cmath>
+#include <ctype.h>
 #define MAX 100
 using namespace std;
 
@@ -587,6 +588,47 @@ public:
             default:
                 cout<<"Opcao invalida\n";
         }
+    }
+};
+
+class Validador{
+public:
+
+    static bool idValido (int id, int total){
+        return id>=1 && id <=total;
+    }
+
+    static bool stringNaoVazia (const char* str){
+        return str!=nullptr && strlen(str)>0;
+    }
+
+    static bool coordenadaValida (double valor){
+        return !cin.fail();
+    }
+
+    static bool opcaoValida (int opc){
+        return opc>=0 && opc<=15;
+    }
+
+    static bool placaValida (const char* placa){
+        return strlen(placa)==7;
+    }
+
+    static bool idPedidoDuplicado (int id, ManagerPedidos& gerPedidos){
+        for (int i=0; i<gerPedidos.getTotalPedidos(); i++){
+            if (gerPedidos.getPedidoByID(i+1).getID()==id)
+                return true;
+        }
+        return false;
+    }
+
+    static bool dentroDoLimite (int total, int limite=MAX){
+        return total<limite;
+    }
+
+    static void limparEntrada (){
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 };
 
