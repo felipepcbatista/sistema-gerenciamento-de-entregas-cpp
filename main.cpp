@@ -41,7 +41,7 @@ private:
     int totalLocais=0;
 public:
     void cadastrarLocal(){
-        if(!Validador::dentroDoLimite(totalLocais)){
+        if(totalLocais>=MAX){
             cout<<"Limite de locais cadastrados atingido.\n";
             return;
         }
@@ -225,7 +225,7 @@ private:
     int totalVeiculos=0;
 public:
     void cadastrarVeiculo(ManagerLocais& gerLocais){
-        if(!Validador::dentroDoLimite(totalVeiculos)){
+        if(totalVeiculos>=MAX){
             cout<<"Limite de veiculos cadastrados atingido.\n";
             return;
         }
@@ -401,7 +401,7 @@ private:
     int totalPedidos=0;
 public:
     void cadastrarPedido(ManagerLocais& gerLocais){
-        if(!Validador::dentroDoLimite(totalPedidos)){
+        if(totalPedidos>=MAX){
             cout<<"Limite de pedidos cadastrados atingido.\n";
             return;
         }
@@ -786,18 +786,44 @@ public:
         }
     }
 
-    static const char* lerString(const char* mensagem){
-        char texto[300];
-        while(true){
-            cout<<mensagem;
-            cin.getline(texto, 300);
-            if(strlen(texto)==0){
-                cout<<"Entrada invalida. Texto nao pode ser vazio.\n";
-            }
-            else{
-                return texto;
+    static bool stringVazia(const char* texto){
+        return strlen(texto)==0;
+    }
+
+    static bool nomeLocalRepetido(const char* nome, Local locais[], int totalLocais){
+        for (int i=0; i<totalLocais; i++){
+            if(stricmp(locais[i].getEndereco(), nome)==0){
+                return true;
             }
         }
+        return false;
+    }
+
+    static bool coordenadaRepetida(double x, double y, Local locais, int totalLocais){
+        for(int i=0; i<totalLocais; i++){
+            if(locais[i].getCoordenadaX()==x && locais[i].getCoordenadaY()==y){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static bool placaRepetida(const char* placa, Veiculo veiculos[], int totalVeiculos){
+        for (int i=0; i<totalVeiculos; i++){
+            if (stricmp(veiculos[i].getPlaca(), placa)==0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static bool idRepetido(int id, Pedido pedidos[], int totalPedidos){
+        for(int i=0; i<totalPedidos; i++){
+            if(pedidos[i].getID()==id){
+                return true;
+            }
+        }
+        return false;
     }
 };
 
