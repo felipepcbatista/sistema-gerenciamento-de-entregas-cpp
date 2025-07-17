@@ -3,7 +3,7 @@
 #include <limits>
 #include <fstream>
 #include <cmath>
-#include <ctype.h>
+#include <cctype>
 #define MAX 100
 using namespace std;
 
@@ -334,7 +334,7 @@ public:
             <<" | Modelo: "<<veiculos[i].getModelo()
             <<" | Placa: "<<veiculos[i].getPlaca()
             <<" | Localizacao: "<<veiculos[i].getLocalAtual()
-            <<"Disponibilidade: "<<veiculos[i].getDisponivel()
+            <<" | Disponibilidade: "<<veiculos[i].getDisponivel()
             <<endl;
         }
     }
@@ -572,6 +572,11 @@ public:
             }
         }
 
+        if(idMelhorVeiculo==-1){
+            cout<<"Nenhnum veiculo disponivel no momento.\n";
+            return;
+        }
+
         double distanciaEntrega = calcularDistancia(origemX, origemY, destinoX, destinoY);
 
         cout<<"ENTREGA:\n";
@@ -749,29 +754,50 @@ public:
 class Validador{
 public:
 
-    static bool idValido (int id, int total){
-        return id>=1 && id <=total;
+    static int lerInteiro(const char* mensagem, int min, int max){
+        int valor;
+        while(true){
+            cout<<mensagem;
+            cin>>valor;
+            if(cin.fail() || valor<min || valor >max){
+                cout<<"Entrada invalida. Tente um numero entre "<<min" e "<<max<<endl;
+                limparEntrada();
+            }
+            else{
+                limparEntrada();
+                return valor;
+            }
+        }
     }
 
-    static bool stringNaoVazia (const char* str){
-        return str!=nullptr && strlen(str)>0;
+    static double lerDouble(const char* mensagem){
+        double valor;
+        while(true){
+            cout<<mensagem;
+            cin>>valor;
+            if(cin.fail()){
+                cout<<"Entrada invalida. Digite um valor numerico.\n";
+                limparEntrada();
+            }
+            else{
+                limparEntrada();
+                return valor;
+            }
+        }
     }
 
-    static bool entradaNumerica (double valor){
-        return isnan(valor) && isinf(valor);
-    }
-
-    static bool placaValida (const char* placa){
-        return strlen(placa)==7;
-    }
-
-    static bool dentroDoLimite (int total, int limite=MAX){
-        return total<limite;
-    }
-
-    static void limparEntrada (){
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    static const char* lerString(const char* mensagem){
+        char texto[300];
+        while(true){
+            cout<<mensagem;
+            cin.getline(texto, 300);
+            if(strlen(texto)==0){
+                cout<<"Entrada invalida. Texto nao pode ser vazio.\n";
+            }
+            else{
+                return texto;
+            }
+        }
     }
 };
 
