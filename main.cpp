@@ -41,6 +41,11 @@ private:
     int totalLocais=0;
 public:
     void cadastrarLocal(){
+        if(!Validador::dentroDoLimite(totalLocais)){
+            cout<<"Limite de locais cadastrados atingido.\n";
+            return;
+        }
+
         char endereco[300];
         double coordenadaX;
         double coordenadaY;
@@ -220,6 +225,11 @@ private:
     int totalVeiculos=0;
 public:
     void cadastrarVeiculo(ManagerLocais& gerLocais){
+        if(!Validador::dentroDoLimite(totalVeiculos)){
+            cout<<"Limite de veiculos cadastrados atingido.\n";
+            return;
+        }
+
         char marca[100];
         char modelo[100];
         char placa[8];
@@ -391,6 +401,11 @@ private:
     int totalPedidos=0;
 public:
     void cadastrarPedido(ManagerLocais& gerLocais){
+        if(!Validador::dentroDoLimite(totalPedidos)){
+            cout<<"Limite de pedidos cadastrados atingido.\n";
+            return;
+        }
+
         int idPedido=totalPedidos;
         int id_localOrigem;
         int id_localDestino;
