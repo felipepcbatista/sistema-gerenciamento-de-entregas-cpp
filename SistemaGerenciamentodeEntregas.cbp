@@ -37,6 +37,7 @@
 		<Unit filename="include/ManagerPedidos.h" />
 		<Unit filename="include/ManagerVeiculos.h" />
 		<Unit filename="include/Pedido.h" />
+		<Unit filename="include/Rotas.h" />
 		<Unit filename="include/Veiculo.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Local.cpp" />
@@ -44,6 +45,7 @@
 		<Unit filename="src/ManagerPedidos.cpp" />
 		<Unit filename="src/ManagerVeiculos.cpp" />
 		<Unit filename="src/Pedido.cpp" />
+		<Unit filename="src/Rotas.cpp" />
 		<Unit filename="src/Veiculo.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
