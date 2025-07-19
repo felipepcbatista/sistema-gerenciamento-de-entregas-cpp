@@ -32,7 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Local.h" />
+		<Unit filename="include/ManagerLocais.h" />
+		<Unit filename="include/Veiculo.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Local.cpp" />
+		<Unit filename="src/ManagerLocais.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
