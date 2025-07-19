@@ -1,6 +1,12 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
+class ManagerLocais;
+class ManagerVeiculos;
+class ManagerPedidos;
+class Rotas;
+class Data;
+
 class Sistema{
 private:
     ManagerLocais gerLocais;

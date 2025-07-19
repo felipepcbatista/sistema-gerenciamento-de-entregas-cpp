@@ -10,12 +10,12 @@ private:
     bool disponivel;
 public:
     Veiculo();
-    Veiculo(const char*, const char*, const char*, const char*, bool);
-    void setMarca (const char*);
-    void setModelo (const char*);
-    void setPlaca (const char*);
-    void setLocalAtual (const char*);
-    void setDisponivel (bool);
+    Veiculo(const char* marca, const char* modelo, const char* placa, const char* localAtual, bool disponivel);
+    void setMarca (const char* marca);
+    void setModelo (const char* modelo);
+    void setPlaca (const char* placa);
+    void setLocalAtual (const char* localAtual);
+    void setDisponivel (bool disponivel);
 
     const char* getMarca()const;
     const char* getModelo()const;

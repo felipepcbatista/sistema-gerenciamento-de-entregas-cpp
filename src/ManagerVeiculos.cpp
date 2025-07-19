@@ -1,10 +1,12 @@
-#include 'ManagerVeiculos.h'
+#include "ManagerVeiculos.h"
+#include "Veiculo.h"
+#include "Validador.h"
 #include <iostream>
 #include <cstring>
 #define MAX 100
 using namespace std;
 
-ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais){
+void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais){
     if(totalVeiculos>=MAX){
         cout<<"Limite de veiculos cadastrados atingido.\n";
         return;
@@ -49,7 +51,7 @@ ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais){
     totalVeiculos++;
 }
 
-ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais){
+void ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais){
     char tempMarca[100];
     char tempModelo[100];
     char tempPlaca[8];
@@ -94,7 +96,7 @@ ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais){
     veiculos[id-1]=Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, tempDisponivel);
 }
 
-ManagerVeiculos::void listaVeiculos(){
+void ManagerVeiculos::void listaVeiculos(){
     if(totalVeiculos==0){
         cout<<"Nenhum veiculo cadastrado.\n";
         return;
@@ -111,7 +113,7 @@ ManagerVeiculos::void listaVeiculos(){
     }
 }
 
-ManagerVeiculos::removerVeiculo(){
+void ManagerVeiculos::removerVeiculo(){
     int id;
 
     cout<<"Digite o [ID] do veiculo a ser removido:\n";
@@ -126,7 +128,7 @@ ManagerVeiculos::removerVeiculo(){
     cout<<"Veiculo removido com sucesso!"<<endl;
 }
 
-ManagerVeiculos::setTotalVeiculos(int total){ totalVeiculos=total; }
-ManagerVeiculos::getTotalVeiculos()const{ return totalVeiculos; }
-ManagerVeiculos::getVeiculo(int id)const{ return veiculos[id]; }
-ManagerVeiculos::getArrayVeiculos()const{ return veiculos; }
+void ManagerVeiculos::setTotalVeiculos(int total){ totalVeiculos=total; }
+void ManagerVeiculos::getTotalVeiculos()const{ return totalVeiculos; }
+void ManagerVeiculos::getVeiculo(int id)const{ return veiculos[id]; }
+void ManagerVeiculos::getArrayVeiculos()const{ return veiculos; }

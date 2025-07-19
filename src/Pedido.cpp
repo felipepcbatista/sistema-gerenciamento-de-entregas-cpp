@@ -1,4 +1,4 @@
-#include 'Pedido.h'
+#include "Pedido.h"
 #include <iostream>
 #include <cstring>
 #define MAX 100
@@ -16,10 +16,10 @@ Pedido::Pedido(int id, const char* localOrigem, const char* localDestino){
     setDestino(localDestino);
 }
 
-Pedido::setID (int id){ this->id=id; }
-Pedido::setOrigem (const char* localOrigem){ strcpy(this->localOrigem, localOrigem); }
-Pedido::setDestino (const char* localDestino){ strcpy(this->localDestino, localDestino); }
+void Pedido::setID (int id){ this->id=id; }
+void Pedido::setOrigem (const char* localOrigem){ strcpy(this->localOrigem, localOrigem); }
+void Pedido::setDestino (const char* localDestino){ strcpy(this->localDestino, localDestino); }
 
-Pedido::getID()const{ return id; }
-Pedido::getOrigem()const{ return localOrigem; }
-Pedido::getDestino()const{ return localDestino; }
+int Pedido::getID()const{ return id; }
+const char* Pedido::getOrigem()const{ return localOrigem; }
+const char* Pedido::getDestino()const{ return localDestino; }

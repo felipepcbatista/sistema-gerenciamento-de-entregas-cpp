@@ -6,7 +6,7 @@
 #include <fstream>
 using namespace std;
 
-Data::salvarLocais(ManagerLocais& gerLocais){
+void Data::salvarLocais(ManagerLocais& gerLocais){
     ofstream out("locais.dat", ios::binary);
     if(!out){
         cout<<"Erro ao abrir arquivo para backup de locais.\n";
@@ -19,7 +19,7 @@ Data::salvarLocais(ManagerLocais& gerLocais){
     cout<<"Backup de locais concluido com sucesso.\n";
 }
 
-Data::carregarLocais(ManagerLocais& gerLocais){
+void Data::carregarLocais(ManagerLocais& gerLocais){
     ifstream in("locais.dat", ios::binary);
     if(!in){
         cout<<"Nenhum backup de locais encontrado.\n";
@@ -33,7 +33,7 @@ Data::carregarLocais(ManagerLocais& gerLocais){
     cout<<"Locais restaurados do backup com sucesso.\n";
 }
 
-Data::salvarVeiculos(ManagerVeiculos& gerVeiculos){
+void Data::salvarVeiculos(ManagerVeiculos& gerVeiculos){
     ofstream out("veiculos.dat", ios::binary);
     if(!out){
         cout<<"Erro ao abrir arquivo para backup de veiculos.\n";
@@ -46,7 +46,7 @@ Data::salvarVeiculos(ManagerVeiculos& gerVeiculos){
     cout<<"Backup de veiculos concluido com sucesso.\n";
 }
 
-Data::carregarVeiculos(ManagerVeiculos& gerVeiculos){
+void Data::carregarVeiculos(ManagerVeiculos& gerVeiculos){
     ifstream in("veiculos.dat", ios::binary);
     if(!in){
         cout<<"Nenhum backup de veiculos encontrado.\n";
@@ -60,7 +60,7 @@ Data::carregarVeiculos(ManagerVeiculos& gerVeiculos){
     cout<<"Veiculos restaurados do backup com sucesso.\n";
 }
 
-Data::salvarPedidos(ManagerPedidos& gerPedidos){
+void Data::salvarPedidos(ManagerPedidos& gerPedidos){
     ofstream out("pedidos.dat", ios::binary);
     if(!out){
         cout<<"Erro ao abrir arquivo para backup de pedidos.\n";
@@ -73,7 +73,7 @@ Data::salvarPedidos(ManagerPedidos& gerPedidos){
     cout<<"Backup de pedidos concluido com sucesso.\n";
 }
 
-Data::carregarPedidos(ManagerPedidos& gerPedidos){
+void Data::carregarPedidos(ManagerPedidos& gerPedidos){
     ifstream in("pedidos.dat", ios::binary);
     if(!in){
         cout<<"Nenhum backup de pedidos encontrado.\n";

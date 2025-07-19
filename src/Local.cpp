@@ -1,4 +1,4 @@
-#include 'Local.h'
+#include "Local.h"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -15,10 +15,10 @@ Local::Local(const char* endereco, double coordenadaX, double coordenadaY){
     setCoordenadaY(coordenadaY);
 }
 
-Local::setEndereco (const char* endereco){ strcpy(this->endereco, endereco); }
-Local::setCoordenadaX (double coordenadaX){ this->coordenadaX=coordenadaX; }
-Local::setCoordenadaY (double coordenadaY){ this->coordenadaY=coordenadaY; }
+void Local::setEndereco (const char* endereco){ strcpy(this->endereco, endereco); }
+void Local::setCoordenadaX (double coordenadaX){ this->coordenadaX=coordenadaX; }
+void Local::setCoordenadaY (double coordenadaY){ this->coordenadaY=coordenadaY; }
 
-Local::getEndereco()const{ return endereco; }
-Local::getCoordenadaX()const{ return coordenadaX; }
-Local::getCoordenadaY()const{ return coordenadaY; }
+const char* Local::getEndereco()const{ return endereco; }
+double Local::getCoordenadaX()const{ return coordenadaX; }
+double Local::getCoordenadaY()const{ return coordenadaY; }

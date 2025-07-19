@@ -1,8 +1,13 @@
-#include 'Sistema.h'
+#include "Sistema.h"
+#include "ManagerLocais.h"
+#include "ManagerVeiculos.h"
+#include "ManagerPedidos.h"
+#include "Rotas.h"
+#include "Data.h"
 #include <iostream>
 using namespace std;
 
-Sistema::executar(){
+void Sistema::executar(){
     int opcao;
     do{
         exibirMenu();
@@ -12,7 +17,7 @@ Sistema::executar(){
     }while(opcao!=0);
 }
 
-Sistema::exibirMenu(){
+void Sistema::exibirMenu(){
     cout<<"=====MENU PRINCIPAL=====\n";
     cout<<"[1]Cadastrar Local\n";
     cout<<"[2]Atualizar Local\n";
@@ -33,7 +38,7 @@ Sistema::exibirMenu(){
     cout<<"Escolha uma opcao: ";
 }
 
-Sistema::tratarOpcao(int opc){
+void Sistema::tratarOpcao(int opc){
     switch(opc){
         case 1: gerLocais.cadastrarLocal();break;
         case 2: gerLocais.atualizarLocal();break;

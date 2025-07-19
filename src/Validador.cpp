@@ -1,17 +1,17 @@
-#include 'Validador.h'
-#include 'Local.h'
-#include 'Veiculo.h'
+#include "Validador.h"
+#include "Local.h"
+#include "Veiculo.h"
 #include <iostream>
 #include <cstring>
 #include <limits>
 using namespace std;
 
-Validador::limparEntrada(){
+static void Validador::limparEntrada(){
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-Validador::lerInteiro(const char* mensagem, int min, int max){
+static int Validador::lerInteiro(const char* mensagem, int min, int max){
     int valor;
     while(true){
         cout<<mensagem;
@@ -27,7 +27,7 @@ Validador::lerInteiro(const char* mensagem, int min, int max){
     }
 }
 
-Validador::lerDouble(const char* mensagem){
+static double Validador::lerDouble(const char* mensagem){
     double valor;
     while(true){
         cout<<mensagem;
@@ -43,11 +43,11 @@ Validador::lerDouble(const char* mensagem){
     }
 }
 
-Validador::stringVazia(const char* texto){
+static bool Validador::stringVazia(const char* texto){
     return strlen(texto)==0;
 }
 
-Validador::nomeLocalRepetido(const char* nome, Local locais[], int totalLocais){
+static bool Validador::nomeLocalRepetido(const char* nome, Local locais[], int totalLocais){
     for (int i=0; i<totalLocais; i++){
         if(stricmp(locais[i].getEndereco(), nome)==0){
             return true;
@@ -56,7 +56,7 @@ Validador::nomeLocalRepetido(const char* nome, Local locais[], int totalLocais){
     return false;
 }
 
-Validador::placaRepetida(const char* placa, Veiculo veiculos[], int totalVeiculos){
+static bool Validador::placaRepetida(const char* placa, Veiculo veiculos[], int totalVeiculos){
     for (int i=0; i<totalVeiculos; i++){
         if (stricmp(veiculos[i].getPlaca(), placa)==0){
             return true;
@@ -65,6 +65,6 @@ Validador::placaRepetida(const char* placa, Veiculo veiculos[], int totalVeiculo
     return false;
 }
 
-Validador::placaInvalida(const char* placa){
+static bool Validador::placaInvalida(const char* placa){
     return strlen(placa)!=7;
 }

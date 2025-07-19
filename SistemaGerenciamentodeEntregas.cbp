@@ -40,6 +40,7 @@
 		<Unit filename="include/Pedido.h" />
 		<Unit filename="include/Rotas.h" />
 		<Unit filename="include/Sistema.h" />
+		<Unit filename="include/Validador.h" />
 		<Unit filename="include/Veiculo.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Data.cpp" />
@@ -50,6 +51,7 @@
 		<Unit filename="src/Pedido.cpp" />
 		<Unit filename="src/Rotas.cpp" />
 		<Unit filename="src/Sistema.cpp" />
+		<Unit filename="src/Validador.cpp" />
 		<Unit filename="src/Veiculo.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

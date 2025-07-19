@@ -1,10 +1,12 @@
-#include 'ManagerPedidos.h'
+#include "ManagerPedidos.h"
+#include "Pedido.h"
+#include "Validador.h"
 #include <iostream>
 #include <cstring>
 #define MAX 100
 using namespace std;
 
-ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais){
+void ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais){
     if(totalPedidos>=MAX){
         cout<<"Limite de pedidos cadastrados atingido.\n";
         return;
@@ -31,7 +33,7 @@ ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais){
 
     cout<<"Pedido cadastrado com sucesso!"<<endl;
 }
-ManagerPedidos::atualizarPedido(ManagerLocais& gerLocais){
+void ManagerPedidos::atualizarPedido(ManagerLocais& gerLocais){
     int idPedido;
     int id_tempLocalOrigem;
     int id_tempLocalDestino;
@@ -54,7 +56,7 @@ ManagerPedidos::atualizarPedido(ManagerLocais& gerLocais){
 
     pedidos[idPedido-1]=Pedido(idPedido-1, tempLocalOrigem, tempLocalDestino);
 }
-ManagerPedidos::listaPedidos(){
+void ManagerPedidos::listaPedidos(){
     if(totalPedidos==0){
         cout<<"Nenhum pedido cadastrado.\n";
         return;
@@ -67,7 +69,7 @@ ManagerPedidos::listaPedidos(){
         <<endl;
     }
 }
-ManagerPedidos::removerPedido(){
+void ManagerPedidos::removerPedido(){
     int idPedido;
 
     cout<<"Informe o [ID] do pedido a ser removido:\n";
@@ -82,8 +84,8 @@ ManagerPedidos::removerPedido(){
     cout<<"Pedido removido com sucesso!"<<endl;
 }
 
-ManagerPedidos::setTotalPedidos(int total){ totalPedidos=total; }
+void ManagerPedidos::setTotalPedidos(int total){ totalPedidos=total; }
 
-ManagerPedidos::getPedidoByID(int id)const{ return pedidos[id-1]; }
-ManagerPedidos::getTotalPedidos()const{ return totalPedidos; }
-ManagerPedidos::getArrayPedidos()const{ return pedidos; }
+Pedido ManagerPedidos::getPedidoByID(int id)const{ return pedidos[id-1]; }
+int ManagerPedidos::getTotalPedidos()const{ return totalPedidos; }
+Pedido* ManagerPedidos::getArrayPedidos()const{ return pedidos; }

@@ -1,19 +1,19 @@
-#include 'Rotas.h'
-#include 'Validador.h'
-#include 'ManagerLocais.h'
-#include 'ManagerVeiculos.h'
-#include 'ManagerPedidos.h'
-#include 'Pedido.h'
+#include "Rotas.h"
+#include "Validador.h"
+#include "ManagerLocais.h"
+#include "ManagerVeiculos.h"
+#include "ManagerPedidos.h"
+#include "Pedido.h"
 #include <iostream>
 #include <limits>
 #include <cmath>
 using namespace std;
 
-Rotas::calcularDistancia(double x1, double y1, double x2, double y2){
+double Rotas::calcularDistancia(double x1, double y1, double x2, double y2){
     return sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
 }
 
-Rotas::simularEntrega(ManagerLocais& gerLocais, ManagerVeiculos& gerVeiculos, ManagerPedidos& gerPedidos){
+void Rotas::simularEntrega(ManagerLocais& gerLocais, ManagerVeiculos& gerVeiculos, ManagerPedidos& gerPedidos){
     int idPedido;
     idPedido = Validador::lerInteiro("ID do pedido: ", 1, gerPedidos.getTotalPedidos());
 

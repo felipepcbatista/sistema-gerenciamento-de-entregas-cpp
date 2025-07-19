@@ -9,10 +9,10 @@ private:
 public:
 
     Pedido();
-    Pedido(int, const char*, const char*);
-    void setID (int);
-    void setOrigem (const char*);
-    void setDestino (const char*);
+    Pedido(int id, const char* localOrigem, const char* localDestino);
+    void setID (int id);
+    void setOrigem (const char* localOrigem);
+    void setDestino (const char* localDestino);
     int getID()const;
     const char* getOrigem()const;
     const char* getDestino()const;
