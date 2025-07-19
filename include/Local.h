@@ -1,5 +1,5 @@
-#ifndef LOCAL_H_INCLUDED
-#define LOCAL_H_INCLUDED
+#ifndef LOCAL_H
+#define LOCAL_H
 
 class Local{
 private:
