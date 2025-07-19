@@ -35,11 +35,13 @@
 		<Unit filename="include/Local.h" />
 		<Unit filename="include/ManagerLocais.h" />
 		<Unit filename="include/ManagerVeiculos.h" />
+		<Unit filename="include/Pedido.h" />
 		<Unit filename="include/Veiculo.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Local.cpp" />
 		<Unit filename="src/ManagerLocais.cpp" />
 		<Unit filename="src/ManagerVeiculos.cpp" />
+		<Unit filename="src/Pedido.cpp" />
 		<Unit filename="src/Veiculo.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
