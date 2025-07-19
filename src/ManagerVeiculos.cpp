@@ -1,5 +1,7 @@
 #include 'ManagerVeiculos.h'
 #include <iostream>
+#include <cstring>
+#define MAX 100
 using namespace std;
 
 ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais){
