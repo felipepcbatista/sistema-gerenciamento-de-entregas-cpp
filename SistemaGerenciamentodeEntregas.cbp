@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Data.h" />
 		<Unit filename="include/Local.h" />
 		<Unit filename="include/ManagerLocais.h" />
 		<Unit filename="include/ManagerPedidos.h" />
@@ -40,6 +41,7 @@
 		<Unit filename="include/Rotas.h" />
 		<Unit filename="include/Veiculo.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Data.cpp" />
 		<Unit filename="src/Local.cpp" />
 		<Unit filename="src/ManagerLocais.cpp" />
 		<Unit filename="src/ManagerPedidos.cpp" />
