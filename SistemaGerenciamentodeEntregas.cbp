@@ -31,6 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="C:/Users/lipep/ProjetoSGE-cpp/SistemaGerenciamentodeEntregas/include" />
 		</Compiler>
 		<Unit filename="include/Data.h" />
 		<Unit filename="include/Local.h" />

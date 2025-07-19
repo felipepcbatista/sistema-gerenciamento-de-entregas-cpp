@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1752893664 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\local.cpp
+	"Local.h"
+	<iostream>
+	<cstring>
+
+1752892925 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\local.h
+
+1752893074 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\main.cpp
+	"include/Sistema.h"
+	<iostream>
+
+1752893907 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\sistema.h
+
+1752893946 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\pedido.cpp
+	"Pedido.h"
+	<iostream>
+	<cstring>
+
+1752892925 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\pedido.h
+
+1752893970 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\veiculo.cpp
+	"Veiculo.h"
+	<iostream>
+	<cstring>
+
+1752892925 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\veiculo.h
+
+1752893689 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerlocais.cpp
+	"ManagerLocais.h"
+	"Local.h"
+	"Validador.h"
+	<iostream>
+	<cstring>
+
+1752894284 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\managerlocais.h
+	"Local.h"
+
+1752892925 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\validador.h
+
+1752893673 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\data.cpp
+	"Data.h"
+	"ManagerLocais.h"
+	"ManagerVeiculos.h"
+	"ManagerPedidos.h"
+	<iostream>
+	<fstream>
+
+1752892925 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\data.h
+
+1752894182 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\managerveiculos.h
+	<string>
+	"Veiculo.h"
+	"Pedido.h"
+	"ManagerLocais.h"
+
+1752894095 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\managerpedidos.h
+

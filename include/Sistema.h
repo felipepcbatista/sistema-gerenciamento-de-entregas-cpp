@@ -9,11 +9,11 @@ class Data;
 
 class Sistema{
 private:
-    ManagerLocais gerLocais;
-    ManagerVeiculos gerVeiculos;
-    ManagerPedidos gerPedidos;
-    Rotas simuladorRotas;
-    Data persistencia;
+    ManagerLocais* gerLocais;
+    ManagerVeiculos* gerVeiculos;
+    ManagerPedidos* gerPedidos;
+    Rotas* simuladorRotas;
+    Data* persistencia;
 public:
     void executar();
     void exibirMenu();

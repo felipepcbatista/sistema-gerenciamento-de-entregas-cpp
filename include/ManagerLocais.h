@@ -4,7 +4,8 @@
 
 class ManagerLocais {
 private:
-    Local locais[MAX];
+    static const int MAX = 100;
+    Local* locais[MAX];
     int totalLocais = 0;
 
 public:

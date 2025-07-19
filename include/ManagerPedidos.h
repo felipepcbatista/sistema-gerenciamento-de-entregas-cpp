@@ -1,11 +1,13 @@
 #ifndef MANAGERPEDIDOS_H
 #define MANAGERPEDIDOS_H
+#define MAX 100
 
 class Pedido;
+class ManagerLocais;
 
 class ManagerPedidos{
 private:
-    Pedido pedidos[MAX];
+    Pedido* pedidos[MAX];
     int totalPedidos=0;
 public:
     void cadastrarPedido(ManagerLocais& gerLocais);

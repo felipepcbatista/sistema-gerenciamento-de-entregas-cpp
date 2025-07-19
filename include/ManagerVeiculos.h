@@ -1,22 +1,27 @@
 #ifndef MANAGERVEICULOS_H
 #define MANAGERVEICULOS_H
 
-class Veiculo;
+#include <string>
+#include "Veiculo.h"
+#include "Pedido.h"
+#include "ManagerLocais.h"
 
-class ManagerVeiculos{
+const int MAX = 100;
+
+class ManagerVeiculos {
 private:
-    Veiculo veiculos[MAX];
-    int totalVeiculos=0;
+    Veiculo* veiculos[MAX];
+    int totalVeiculos;
 public:
     void cadastrarVeiculo(ManagerLocais& gerLocais);
     void atualizarVeiculo(ManagerLocais& gerLocais);
-    void listaVeiculos();
-    void removerVeiculo();
+    void listarVeiculos();
+    void removeVeiculo();
     void setTotalVeiculos(int total);
 
-    int getTotalVeiculos()const;
-    Veiculo& getVeiculo(int id)const;
-    Veiculo* getArrayVeiculos()const;
+    int getTotalVeiculos() const;
+    Veiculo* getVeiculo(int id) const;
+    Veiculo** getArrayVeiculos() const;
 };
 
 #endif
