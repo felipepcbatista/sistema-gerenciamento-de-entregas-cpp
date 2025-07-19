@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #define MAX 100
+using namespace std;
 
 ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais){
     if(totalPedidos>=MAX){
