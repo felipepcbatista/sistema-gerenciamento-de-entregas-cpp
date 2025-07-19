@@ -660,7 +660,7 @@ public:
             cout<<mensagem;
             cin>>valor;
             if(cin.fail() || valor<min || valor >max){
-                cout<<"Entrada invalida. Tente um numero entre "<<min" e "<<max<<endl;
+                cout<<"Entrada invalida. Tente um numero entre "<<min" e "<<max<<"\n";
                 limparEntrada();
             }
             else{
