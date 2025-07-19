@@ -16,7 +16,7 @@ public:
     double getCoordenadaXporID(int)const;
     double getCoordenadaYporID(int)const;
     int getTotalLocais()const;
-    Local* getArrayLocais()const
+    Local* getArrayLocais()const;
 };
 
 #endif
