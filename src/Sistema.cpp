@@ -8,6 +8,12 @@
 using namespace std;
 
 void Sistema::executar(){
+    gerLocais = new ManagerLocais();
+    gerVeiculos = new ManagerVeiculos();
+    gerPedidos = new ManagerPedidos();
+    simuladorRotas = new Rotas();
+    persistencia = new Data();
+
     int opcao;
     do{
         exibirMenu();
@@ -15,10 +21,16 @@ void Sistema::executar(){
         cin.ignore();
         tratarOpcao(opcao);
     }while(opcao!=0);
+
+    delete gerLocais;
+    delete gerVeiculos;
+    delete gerPedidos;
+    delete simuladorRotas;
+    delete persistencia;
 }
 
 void Sistema::exibirMenu(){
-    cout<<"=====MENU PRINCIPAL=====\n";
+    cout<<"\n=====MENU PRINCIPAL=====\n";
     cout<<"[1]Cadastrar Local\n";
     cout<<"[2]Atualizar Local\n";
     cout<<"[3]Remover Local\n";
@@ -40,28 +52,28 @@ void Sistema::exibirMenu(){
 
 void Sistema::tratarOpcao(int opc){
     switch(opc){
-        case 1: gerLocais.cadastrarLocal();break;
-        case 2: gerLocais.atualizarLocal();break;
-        case 3: gerLocais.removerLocal();break;
-        case 4: gerLocais.listaLocais();break;
-        case 5: gerVeiculos.cadastrarVeiculo(gerLocais);break;
-        case 6: gerVeiculos.atualizarVeiculo(gerLocais);break;
-        case 7: gerVeiculos.removerVeiculo();break;
-        case 8: gerVeiculos.listaVeiculos();break;
-        case 9: gerPedidos.cadastrarPedido(gerLocais);break;
-        case 10: gerPedidos.atualizarPedido(gerLocais);break;
-        case 11: gerPedidos.removerPedido();break;
-        case 12: gerPedidos.listaPedidos();break;
-        case 13: simuladorRotas.simularEntrega(gerLocais, gerVeiculos, gerPedidos);break;
+        case 1: gerLocais->cadastrarLocal(); break;
+        case 2: gerLocais->atualizarLocal(); break;
+        case 3: gerLocais->removerLocal(); break;
+        case 4: gerLocais->listaLocais(); break;
+        case 5: gerVeiculos->cadastrarVeiculo(*gerLocais); break;
+        case 6: gerVeiculos->atualizarVeiculo(*gerLocais); break;
+        case 7: gerVeiculos->removerVeiculo(); break;
+        case 8: gerVeiculos->listaVeiculos(); break;
+        case 9: gerPedidos->cadastrarPedido(*gerLocais); break;
+        case 10: gerPedidos->atualizarPedido(*gerLocais); break;
+        case 11: gerPedidos->removerPedido(); break;
+        case 12: gerPedidos->listaPedidos(); break;
+        case 13: simuladorRotas->simularEntrega(*gerLocais, *gerVeiculos, *gerPedidos); break;
         case 14:
-            persistencia.salvarLocais(gerLocais);
-            persistencia.salvarVeiculos(gerVeiculos);
-            persistencia.salvarPedidos(gerPedidos);
+            persistencia->salvarLocais(*gerLocais);
+            persistencia->salvarVeiculos(*gerVeiculos);
+            persistencia->salvarPedidos(*gerPedidos);
             break;
         case 15:
-            persistencia.carregarLocais(gerLocais);
-            persistencia.carregarVeiculos(gerVeiculos);
-            persistencia.carregarPedidos(gerPedidos);
+            persistencia->carregarLocais(*gerLocais);
+            persistencia->carregarVeiculos(*gerVeiculos);
+            persistencia->carregarPedidos(*gerPedidos);
             break;
         case 0:
             cout<<"Encerrando...\n";
@@ -70,3 +82,4 @@ void Sistema::tratarOpcao(int opc){
             cout<<"Opcao invalida\n";
     }
 }
+

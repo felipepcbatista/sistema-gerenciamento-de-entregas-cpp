@@ -84,5 +84,5 @@ void Data::carregarPedidos(ManagerPedidos& gerPedidos){
     in.read((char*)gerPedidos.getArrayPedidos(), sizeof(Pedido)*total);
     gerPedidos.setTotalPedidos(total);
     in.close();
-    cout<<"Veiculos restaurados do backup com sucesso.\n";
+    cout<<"Pedidos restaurados do backup com sucesso.\n";
 }

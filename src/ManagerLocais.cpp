@@ -23,7 +23,7 @@ void ManagerLocais::cadastrarLocal() {
         return;
     }
 
-    if (Validador::nomeLocalRepetido(endereco, locais, totalLocais)) {
+    if (Validador::localRepetido(endereco, locais, totalLocais)) {
         cout << "Este local ja foi cadastrado.\n";
         return;
     }
@@ -43,12 +43,11 @@ void ManagerLocais::atualizarLocal() {
     double tempCoordenadaY;
     int id;
 
-    cout << "Digite o [ID] do local a ser atualizado:\n";
+    cout << "\nDigite o [ID] do local a ser atualizado:\n";
     listaLocais();
-    id = Validador::lerInteiro("ID: ", 1, totalLocais);
+    id = Validador::lerInteiro("\nID: ", 1, totalLocais);
 
     cout << "Novo endereco: ";
-    cin.ignore();  // garante leitura correta se houve getline antes
     cin.getline(tempEndereco, 300);
 
     if (Validador::stringVazia(tempEndereco)) {
@@ -65,6 +64,7 @@ void ManagerLocais::atualizarLocal() {
 }
 
 void ManagerLocais::listaLocais() {
+    cout<<"\n---Locais cadastrados:---\n";
     if (totalLocais == 0) {
         cout << "Nenhum local cadastrado.\n";
         return;
@@ -83,7 +83,7 @@ void ManagerLocais::removerLocal() {
     int id;
     cout << "Digite o [ID] do local a ser removido:\n";
     listaLocais();
-    id = Validador::lerInteiro("ID: ", 1, totalLocais);
+    id = Validador::lerInteiro("\nID: ", 1, totalLocais);
 
     for (int i = id - 1; i < totalLocais - 1; i++) {
         locais[i] = locais[i + 1];
