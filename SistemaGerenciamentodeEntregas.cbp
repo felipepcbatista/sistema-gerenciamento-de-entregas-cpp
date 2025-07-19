@@ -38,6 +38,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Local.cpp" />
 		<Unit filename="src/ManagerLocais.cpp" />
+		<Unit filename="src/Veiculo.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
