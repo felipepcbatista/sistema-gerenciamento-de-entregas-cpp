@@ -14,11 +14,11 @@ public:
     void listaLocais();
     void removerLocal();
 
-    const char* getEnderecoByID(int);
-    int getIDporEndereco(const char*);
-    void setTotalLocais(int);
-    double getCoordenadaXporID(int) const;
-    double getCoordenadaYporID(int) const;
+    const char* getEnderecoByID(int id);
+    int getIDporEndereco(const char* endereco);
+    void setTotalLocais(int total);
+    double getCoordenadaXporID(int id) const;
+    double getCoordenadaYporID(int id) const;
     int getTotalLocais() const;
     Local* getArrayLocais() const;
 };

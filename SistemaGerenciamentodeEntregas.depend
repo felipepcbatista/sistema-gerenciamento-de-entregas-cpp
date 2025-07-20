@@ -4,7 +4,7 @@
 	<iostream>
 	<cstring>
 
-1752933687 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\local.h
+1753035656 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\local.h
 
 1752933687 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\main.cpp
 	"Sistema.h"
@@ -31,7 +31,7 @@
 	<iostream>
 	<cstring>
 
-1752934508 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\managerlocais.h
+1753035719 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\managerlocais.h
 	"Local.h"
 
 1753033353 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\validador.h
@@ -60,7 +60,7 @@
 	<iostream>
 	<cstring>
 
-1753034270 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerveiculos.cpp
+1753034971 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerveiculos.cpp
 	"ManagerVeiculos.h"
 	"Validador.h"
 	"ManagerLocais.h"

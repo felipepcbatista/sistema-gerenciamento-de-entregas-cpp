@@ -8,10 +8,10 @@ private:
     double coordenadaY;
 public:
     Local();
-    Local(const char*, double, double);
+    Local(const char* endereco, double coordenadaX, double coordenadaY);
     void setEndereco(const char* endereco);
-    void setCoordenadaX(double);
-    void setCoordenadaY(double);
+    void setCoordenadaX(double coordenadaX);
+    void setCoordenadaY(double coordenadaY);
     const char* getEndereco() const;
     double getCoordenadaX() const;
     double getCoordenadaY() const;
