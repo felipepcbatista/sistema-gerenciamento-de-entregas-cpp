@@ -16,6 +16,12 @@ double Rotas::calcularDistancia(double x1, double y1, double x2, double y2){
 
 void Rotas::simularEntrega(ManagerLocais& gerLocais, ManagerVeiculos& gerVeiculos, ManagerPedidos& gerPedidos){
     int idPedido;
+
+    if(gerPedidos.getTotalPedidos()==0){
+        gerPedidos.listaPedidos();
+        return;
+    }
+
     cout<<"\nDigite o [ID] do pedido a ser entregue:\n";
     gerPedidos.listaPedidos();
     idPedido = Validador::lerInteiro("\nID: ", 1, gerPedidos.getTotalPedidos());

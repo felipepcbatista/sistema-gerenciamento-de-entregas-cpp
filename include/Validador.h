@@ -12,7 +12,7 @@ public:
     static bool stringVazia(const char* texto);
     static bool localRepetido(const char* endereco, Local locais[], int totalLocais);
     static bool placaRepetida(const char* placa, Veiculo veiculos[], int totalVeiculos);
-    static bool placaInvalida(const char* placa);
+    static bool placaValida(const char* placa);
 };
 
 #endif

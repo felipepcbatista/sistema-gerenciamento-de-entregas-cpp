@@ -1,5 +1,6 @@
 #include "ManagerVeiculos.h"
 #include "Validador.h"
+#include "ManagerLocais.h"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -7,6 +8,11 @@ using namespace std;
 void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais) {
     if (totalVeiculos >= MAX) {
         cout << "Limite de veiculos cadastrados atingido.\n";
+        return;
+    }
+
+    if(gerLocais.getTotalLocais()==0){
+        gerLocais.listaLocais();
         return;
     }
 
@@ -32,8 +38,8 @@ void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais) {
     }
 
     cout << "Placa do veiculo (7 caracteres): ";
-    cin.getline(placa, 8);
-    if (Validador::placaInvalida(placa)) {
+    cin.getline(placa, 100);
+    if (!Validador::placaValida(placa)) {
         cout << "Entrada invalida. Placa deve conter exatamente 7 caracteres.\n";
         return;
     }
@@ -52,7 +58,12 @@ void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais) {
 
 void ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais) {
     if (totalVeiculos == 0) {
-        cout << "Nenhum veiculo cadastrado.\n";
+        listaVeiculos();
+        return;
+    }
+
+    if(gerLocais.getTotalLocais()==0){
+        gerLocais.listaLocais();
         return;
     }
 
@@ -62,8 +73,9 @@ void ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais) {
 
     cout << "Digite o [ID] do veiculo a ser atualizado:\n";
     listaVeiculos();
-    id = Validador::lerInteiro("ID: ", 1, totalVeiculos);
+    id = Validador::lerInteiro("\nID: ", 1, totalVeiculos);
 
+    cout<<"Dados a serem atualizados:\n";
     cout << "Marca: ";
     cin.getline(tempMarca, 100);
     if (Validador::stringVazia(tempMarca)) {
@@ -80,8 +92,13 @@ void ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais) {
 
     cout << "Placa: ";
     cin.getline(tempPlaca, 8);
-    if (Validador::placaInvalida(tempPlaca)) {
+    if (!Validador::placaValida(tempPlaca)) {
         cout << "Entrada invalida. Placa deve conter exatamente 7 caracteres.\n";
+        return;
+    }
+
+    if (Validador::placaRepetida(tempPlaca, veiculos, totalVeiculos)) {
+        cout << "Ja existe um veiculo com essa placa.\n";
         return;
     }
 
@@ -91,6 +108,8 @@ void ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais) {
     strcpy(tempLocalAtual, gerLocais.getEnderecoByID(id_tempLocalAtual));
 
     veiculos[id - 1] = Veiculo(tempMarca, tempModelo, tempPlaca, tempLocalAtual, true);
+
+    cout<<"Veiculo atualizado com sucesso!"<<endl;
 }
 
 void ManagerVeiculos::listaVeiculos() {
@@ -112,7 +131,7 @@ void ManagerVeiculos::listaVeiculos() {
 }
 void ManagerVeiculos::removerVeiculo() {
     if (totalVeiculos == 0) {
-        cout << "Nenhum veiculo para remover.\n";
+        listaVeiculos();
         return;
     }
 

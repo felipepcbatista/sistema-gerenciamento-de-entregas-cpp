@@ -43,6 +43,11 @@ void ManagerLocais::atualizarLocal() {
     double tempCoordenadaY;
     int id;
 
+    if(totalLocais==0){
+        listaLocais();
+        return;
+    }
+
     cout << "\nDigite o [ID] do local a ser atualizado:\n";
     listaLocais();
     id = Validador::lerInteiro("\nID: ", 1, totalLocais);
@@ -81,6 +86,11 @@ void ManagerLocais::listaLocais() {
 
 void ManagerLocais::removerLocal() {
     int id;
+    if(totalLocais==0){
+        listaLocais();
+        return;
+    }
+
     cout << "Digite o [ID] do local a ser removido:\n";
     listaLocais();
     id = Validador::lerInteiro("\nID: ", 1, totalLocais);

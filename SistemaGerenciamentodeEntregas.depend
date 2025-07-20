@@ -22,9 +22,9 @@
 	"Veiculo.h"
 	<cstring>
 
-1752892925 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\veiculo.h
+1753033440 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\veiculo.h
 
-1752935944 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerlocais.cpp
+1753033878 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerlocais.cpp
 	"ManagerLocais.h"
 	"Local.h"
 	"Validador.h"
@@ -34,7 +34,7 @@
 1752934508 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\managerlocais.h
 	"Local.h"
 
-1752934386 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\validador.h
+1753033353 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\validador.h
 
 1752933687 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\data.cpp
 	"Data.h"
@@ -54,19 +54,20 @@
 	"Pedido.h"
 	"ManagerLocais.h"
 
-1752935944 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerpedidos.cpp
+1753034520 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerpedidos.cpp
 	"ManagerPedidos.h"
 	"Validador.h"
 	<iostream>
 	<cstring>
 
-1752935944 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerveiculos.cpp
+1753034270 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\managerveiculos.cpp
 	"ManagerVeiculos.h"
 	"Validador.h"
+	"ManagerLocais.h"
 	<iostream>
 	<cstring>
 
-1752933687 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\rotas.cpp
+1753034520 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\rotas.cpp
 	"Rotas.h"
 	"Validador.h"
 	"ManagerLocais.h"
@@ -80,7 +81,7 @@
 
 1752936763 c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\include\rotas.h
 
-1752934190 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\validador.cpp
+1753033353 source:c:\users\lipep\projetosge-cpp\sistemagerenciamentodeentregas\src\validador.cpp
 	"Validador.h"
 	"Local.h"
 	"Veiculo.h"

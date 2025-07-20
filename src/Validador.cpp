@@ -69,6 +69,6 @@ bool Validador::placaRepetida(const char* placa, Veiculo veiculos[], int totalVe
     return false;
 }
 
-bool Validador::placaInvalida(const char* placa) {
-    return strlen(placa) != 7;
+bool Validador::placaValida(const char* placa) {
+    return strlen(placa) == 7;
 }

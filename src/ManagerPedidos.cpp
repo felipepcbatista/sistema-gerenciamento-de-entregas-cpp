@@ -10,6 +10,11 @@ void ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais) {
         return;
     }
 
+    if(gerLocais.getTotalLocais()==0){
+        gerLocais.listaLocais();
+        return;
+    }
+
     int idPedido = totalPedidos;
     int id_localOrigem, id_localDestino;
 
@@ -34,24 +39,29 @@ void ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais) {
 
 void ManagerPedidos::atualizarPedido(ManagerLocais& gerLocais) {
     if (totalPedidos == 0) {
-        cout << "Nenhum pedido cadastrado.\n";
+        listaPedidos();
+        return;
+    }
+
+    if(gerLocais.getTotalLocais()==0){
+        gerLocais.listaLocais();
         return;
     }
 
     int idPedido;
     cout << "Digite o [ID] do pedido a ser atualizado:\n";
     listaPedidos();
-    idPedido = Validador::lerInteiro("ID: ", 1, totalPedidos);
+    idPedido = Validador::lerInteiro("\nID: ", 1, totalPedidos);
 
     int id_tempLocalOrigem, id_tempLocalDestino;
 
     cout << "Digite o [ID] do novo local de origem da entrega:\n";
     gerLocais.listaLocais();
-    id_tempLocalOrigem = Validador::lerInteiro("ID: ", 1, gerLocais.getTotalLocais());
+    id_tempLocalOrigem = Validador::lerInteiro("\nID: ", 1, gerLocais.getTotalLocais());
 
     cout << "Digite o [ID] do novo local de destino da entrega:\n";
     gerLocais.listaLocais();
-    id_tempLocalDestino = Validador::lerInteiro("ID: ", 1, gerLocais.getTotalLocais());
+    id_tempLocalDestino = Validador::lerInteiro("\nID: ", 1, gerLocais.getTotalLocais());
 
     char tempLocalOrigem[300];
     char tempLocalDestino[300];
@@ -78,14 +88,14 @@ void ManagerPedidos::listaPedidos() {
 
 void ManagerPedidos::removerPedido() {
     if (totalPedidos == 0) {
-        cout << "Nenhum pedido cadastrado para remover.\n";
+        listaPedidos();
         return;
     }
 
     int idPedido;
     cout << "Informe o [ID] do pedido a ser removido:\n";
     listaPedidos();
-    idPedido = Validador::lerInteiro("ID: ", 1, totalPedidos);
+    idPedido = Validador::lerInteiro("\nID: ", 1, totalPedidos);
 
     for (int i = idPedido - 1; i < totalPedidos - 1; i++) {
         pedidos[i] = pedidos[i + 1];

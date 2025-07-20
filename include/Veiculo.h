@@ -5,7 +5,7 @@ class Veiculo{
 private:
     char marca[100];
     char modelo[100];
-    char placa[8];
+    char placa[100];
     char localAtual[300];
     bool disponivel;
 public:
