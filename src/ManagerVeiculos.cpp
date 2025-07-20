@@ -5,12 +5,16 @@
 #include <cstring>
 using namespace std;
 
+//Cadastrar Veículo
 void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais) {
+
+    //Validador: limite de veículos
     if (totalVeiculos >= MAX) {
         cout << "Limite de veiculos cadastrados atingido.\n";
         return;
     }
 
+    //Exibe e retorna se não houver locais cadastrados -> Veículos depende de local
     if(gerLocais.getTotalLocais()==0){
         gerLocais.listaLocais();
         return;
@@ -21,10 +25,14 @@ void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais) {
 
     cout << "\nDigite o ID da localizacao atual do veiculo:\n";
     gerLocais.listaLocais();
+
+    //Validador: entrada não numérica
     id_localAtual = Validador::lerInteiro("\nID: ", 1, gerLocais.getTotalLocais());
 
     cout << "Marca do veiculo: ";
     cin.getline(marca, 100);
+
+    //Validador: Marca vazia
     if (Validador::stringVazia(marca)) {
         cout << "Entrada invalida. Marca nao pode ser vazia.\n";
         return;
@@ -32,6 +40,8 @@ void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais) {
 
     cout << "Modelo do veiculo: ";
     cin.getline(modelo, 100);
+
+    //Validador: Modelo vazio
     if (Validador::stringVazia(modelo)) {
         cout << "Entrada invalida. Modelo nao pode ser vazio.\n";
         return;
@@ -39,11 +49,14 @@ void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais) {
 
     cout << "Placa do veiculo (7 caracteres): ";
     cin.getline(placa, 100);
+
+    //Validador: Placa inválida (Difere de 7 caracteres)
     if (!Validador::placaValida(placa)) {
         cout << "Entrada invalida. Placa deve conter exatamente 7 caracteres.\n";
         return;
     }
 
+    //Validador: Placa repetida
     if (Validador::placaRepetida(placa, veiculos, totalVeiculos)) {
         cout << "Ja existe um veiculo com essa placa.\n";
         return;
@@ -56,12 +69,16 @@ void ManagerVeiculos::cadastrarVeiculo(ManagerLocais& gerLocais) {
     cout<< "Veiculo cadastrado com sucesso!" <<endl;
 }
 
+//Atualizar Veículo
 void ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais) {
+
+    //Exibe e retorna se não houver veículos cadastrados
     if (totalVeiculos == 0) {
         listaVeiculos();
         return;
     }
 
+    //Exibe e retorna se não houver locais cadastrados -> Veículo depende de local
     if(gerLocais.getTotalLocais()==0){
         gerLocais.listaLocais();
         return;
@@ -73,6 +90,8 @@ void ManagerVeiculos::atualizarVeiculo(ManagerLocais& gerLocais) {
 
     cout << "Digite o [ID] do veiculo a ser atualizado:\n";
     listaVeiculos();
+
+    //Validador: entrada não numérica
     id = Validador::lerInteiro("\nID: ", 1, totalVeiculos);
 
     cout<<"Dados a serem atualizados:\n";

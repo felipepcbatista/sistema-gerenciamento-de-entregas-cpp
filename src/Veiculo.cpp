@@ -1,6 +1,7 @@
 #include "Veiculo.h"
 #include <cstring>
 
+//Construtor Padrão
 Veiculo::Veiculo() {
     strcpy(marca, "");
     strcpy(modelo, "");
@@ -9,6 +10,7 @@ Veiculo::Veiculo() {
     disponivel = true;
 }
 
+//Construtor Parametrizado
 Veiculo::Veiculo(const char* marca, const char* modelo, const char* placa, const char* localAtual, bool disponivel) {
     setMarca(marca);
     setModelo(modelo);
@@ -17,12 +19,14 @@ Veiculo::Veiculo(const char* marca, const char* modelo, const char* placa, const
     setDisponivel(disponivel);
 }
 
+//Setters
 void Veiculo::setMarca(const char* marca) { strcpy(this->marca, marca); }
 void Veiculo::setModelo(const char* modelo) { strcpy(this->modelo, modelo); }
 void Veiculo::setPlaca(const char* placa) { strcpy(this->placa, placa); }
 void Veiculo::setLocalAtual(const char* localAtual) { strcpy(this->localAtual, localAtual); }
 void Veiculo::setDisponivel(bool disponivel) { this->disponivel = disponivel; }
 
+//Getters
 const char* Veiculo::getMarca() const { return marca; }
 const char* Veiculo::getModelo() const { return modelo; }
 const char* Veiculo::getPlaca() const { return placa; }
