@@ -49,30 +49,7 @@ Este sistema tem como objetivo simular a logística de entregas entre locais, ut
 
 ## 📁 Estrutura do Projeto
 
-SistemaGerenciamentodeEntregas/
-├── include/ # Arquivos de cabeçalho (.h)
-│ ├── Data.h
-│ ├── Local.h
-│ ├── ManagerLocais.h
-│ ├── ManagerPedidos.h
-│ ├── ManagerVeiculos.h
-│ ├── Pedido.h
-│ ├── Rotas.h
-│ ├── Sistema.h
-│ ├── Validador.h
-│ └── Veiculo.h
-├── src/ # Arquivos de implementação (.cpp)
-│ ├── Data.cpp
-│ ├── Local.cpp
-│ ├── ManagerLocais.cpp
-│ ├── ManagerPedidos.cpp
-│ ├── ManagerVeiculos.cpp
-│ ├── Pedido.cpp
-│ ├── Rotas.cpp
-│ ├── Sistema.cpp
-│ ├── Validador.cpp
-│ ├── Veiculo.cpp
-│ └── main.cpp # Ponto de entrada da aplicação
+<pre> ```bash SistemaGerenciamentodeEntregas/ ├── include/ # Arquivos de cabeçalho (.h) │ ├── Data.h │ ├── Local.h │ ├── ManagerLocais.h │ ├── ManagerPedidos.h │ ├── ManagerVeiculos.h │ ├── Pedido.h │ ├── Rotas.h │ ├── Sistema.h │ ├── Validador.h │ └── Veiculo.h ├── src/ # Arquivos de implementação (.cpp) │ ├── Data.cpp │ ├── Local.cpp │ ├── ManagerLocais.cpp │ ├── ManagerPedidos.cpp │ ├── ManagerVeiculos.cpp │ ├── Pedido.cpp │ ├── Rotas.cpp │ ├── Sistema.cpp │ ├── Validador.cpp │ └── Veiculo.cpp ├── main.cpp # Ponto de entrada da aplicação └── README.md # Documentação do projeto ``` </pre>
 
 ---
 
