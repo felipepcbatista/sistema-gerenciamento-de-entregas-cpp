@@ -7,6 +7,7 @@
 #include <iostream>
 using namespace std;
 
+//Executa sistema
 void Sistema::executar(){
     gerLocais = new ManagerLocais();
     gerVeiculos = new ManagerVeiculos();
@@ -16,7 +17,7 @@ void Sistema::executar(){
 
     int opcao;
     do{
-        exibirMenu();
+        exibirMenu(); //Exibe o menu de opções
         cin>>opcao;
         cin.ignore();
         tratarOpcao(opcao);
@@ -29,6 +30,7 @@ void Sistema::executar(){
     delete persistencia;
 }
 
+//Menu de opções
 void Sistema::exibirMenu(){
     cout<<"\n=====MENU PRINCIPAL=====\n";
     cout<<"[1]Cadastrar Local\n";
@@ -50,6 +52,7 @@ void Sistema::exibirMenu(){
     cout<<"Escolha uma opcao: ";
 }
 
+//Trata opção
 void Sistema::tratarOpcao(int opc){
     switch(opc){
         case 1: gerLocais->cadastrarLocal(); break;
@@ -66,19 +69,23 @@ void Sistema::tratarOpcao(int opc){
         case 12: gerPedidos->listaPedidos(); break;
         case 13: simuladorRotas->simularEntrega(*gerLocais, *gerVeiculos, *gerPedidos); break;
         case 14:
+            //Salva dados em arquivo binário
             persistencia->salvarLocais(*gerLocais);
             persistencia->salvarVeiculos(*gerVeiculos);
             persistencia->salvarPedidos(*gerPedidos);
             break;
         case 15:
+            //Carrega dados de arquivo binário
             persistencia->carregarLocais(*gerLocais);
             persistencia->carregarVeiculos(*gerVeiculos);
             persistencia->carregarPedidos(*gerPedidos);
             break;
         case 0:
+            //Encerra o sistema
             cout<<"Encerrando...\n";
             break;
         default:
+            //Validador: opção invalida (Difere do intervalo de 0 a 15)
             cout<<"Opcao invalida\n";
     }
 }

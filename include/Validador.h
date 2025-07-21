@@ -1,6 +1,7 @@
 #ifndef VALIDADOR_H
 #define VALIDADOR_H
 
+//Forward declarations
 class Local;
 class Veiculo;
 

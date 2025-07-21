@@ -1,6 +1,7 @@
 #ifndef ROTAS_H
 #define ROTAS_H
 
+//Forward declarations
 class ManagerLocais;
 class ManagerVeiculos;
 class ManagerPedidos;

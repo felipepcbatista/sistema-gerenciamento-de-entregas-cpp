@@ -4,12 +4,16 @@
 #include <cstring>
 using namespace std;
 
+//Cadastrar Pedido
 void ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais) {
+
+    //Validador: limite de pedidos
     if (totalPedidos >= MAX_PEDIDOS) {
         cout << "Limite de pedidos cadastrados atingido.\n";
         return;
     }
 
+    //Exibe e retorna se não houver locais cadastrados -> Pedido depende de local
     if(gerLocais.getTotalLocais()==0){
         gerLocais.listaLocais();
         return;
@@ -20,10 +24,14 @@ void ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais) {
 
     cout << "\nDigite o [ID] do local de origem da entrega:\n";
     gerLocais.listaLocais();
+
+    //Validador: entrada não numérica
     id_localOrigem = Validador::lerInteiro("\nID: ", 1, gerLocais.getTotalLocais());
 
     cout << "\nDigite o [ID] do local de destino da entrega:\n";
     gerLocais.listaLocais();
+
+    //Validador: entrada não numérica
     id_localDestino = Validador::lerInteiro("\nID: ", 1, gerLocais.getTotalLocais());
 
     char localOrigem[300];
@@ -37,12 +45,16 @@ void ManagerPedidos::cadastrarPedido(ManagerLocais& gerLocais) {
     cout << "Pedido cadastrado com sucesso!" << endl;
 }
 
+//Atualizar Pedido
 void ManagerPedidos::atualizarPedido(ManagerLocais& gerLocais) {
+
+    //Exibe e retorna se não houver pedidos cadastrados
     if (totalPedidos == 0) {
         listaPedidos();
         return;
     }
 
+    //Exibe e retorna se não houver locais cadastrados -> Pedido depende de local
     if(gerLocais.getTotalLocais()==0){
         gerLocais.listaLocais();
         return;
@@ -51,16 +63,22 @@ void ManagerPedidos::atualizarPedido(ManagerLocais& gerLocais) {
     int idPedido;
     cout << "Digite o [ID] do pedido a ser atualizado:\n";
     listaPedidos();
+
+    //Validador: entrada não numérica
     idPedido = Validador::lerInteiro("\nID: ", 1, totalPedidos);
 
     int id_tempLocalOrigem, id_tempLocalDestino;
 
     cout << "Digite o [ID] do novo local de origem da entrega:\n";
     gerLocais.listaLocais();
+
+    //Validador: entrada não numérica
     id_tempLocalOrigem = Validador::lerInteiro("\nID: ", 1, gerLocais.getTotalLocais());
 
     cout << "Digite o [ID] do novo local de destino da entrega:\n";
     gerLocais.listaLocais();
+
+    //Validador: entrada não numérica
     id_tempLocalDestino = Validador::lerInteiro("\nID: ", 1, gerLocais.getTotalLocais());
 
     char tempLocalOrigem[300];
@@ -71,8 +89,11 @@ void ManagerPedidos::atualizarPedido(ManagerLocais& gerLocais) {
     pedidos[idPedido - 1] = Pedido(idPedido - 1, tempLocalOrigem, tempLocalDestino);
 }
 
+//Exibe lista de pedidos cadastrados
 void ManagerPedidos::listaPedidos() {
     cout<<"\n---Pedidos cadastrados:---\n";
+
+    //Exibe e retorna se não houver pedidos cadastrados
     if (totalPedidos == 0) {
         cout << "Nenhum pedido cadastrado.\n";
         return;
@@ -86,7 +107,10 @@ void ManagerPedidos::listaPedidos() {
     }
 }
 
+//Remover Pedido
 void ManagerPedidos::removerPedido() {
+
+    //Exibe e retorna se não houver pedidos cadastrados
     if (totalPedidos == 0) {
         listaPedidos();
         return;
@@ -95,6 +119,8 @@ void ManagerPedidos::removerPedido() {
     int idPedido;
     cout << "Informe o [ID] do pedido a ser removido:\n";
     listaPedidos();
+
+    //Validador: entrada não numérica
     idPedido = Validador::lerInteiro("\nID: ", 1, totalPedidos);
 
     for (int i = idPedido - 1; i < totalPedidos - 1; i++) {
@@ -105,7 +131,10 @@ void ManagerPedidos::removerPedido() {
     cout << "Pedido removido com sucesso!" << endl;
 }
 
+//Setters
 void ManagerPedidos::setTotalPedidos(int total) { totalPedidos = total; }
+
+//Getters
 Pedido ManagerPedidos::getPedidoByID(int id) const { return pedidos[id - 1]; }
 int ManagerPedidos::getTotalPedidos() const { return totalPedidos; }
 Pedido* ManagerPedidos::getArrayPedidos() { return pedidos; }

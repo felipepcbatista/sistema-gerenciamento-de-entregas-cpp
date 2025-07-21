@@ -1,6 +1,7 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
+//Forward declarations
 class ManagerLocais;
 class ManagerVeiculos;
 class ManagerPedidos;
